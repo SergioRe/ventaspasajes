@@ -57,7 +57,6 @@ function listaMenuPorUsuario(IDUSUARIO){
 
 function save(){
     var url = base_url + '/' + pathArray[1] + '/index.php/asignarpermisos/json/save';
-    var IDUSUARIO = $('#IDUSUARIO').val();
     var data = '';
     var elementos = document.getElementsByName("checkbox");
     for(var i=0; i<elementos.length; i++) {
@@ -68,7 +67,7 @@ function save(){
         type: "POST",
         dataType: "JSON",
         data: {data:data},
-        //beforeSend:cargando,
+        beforeSend:cargando,
         success: function(result){
             if(result.data === 'Si'){
                 Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
@@ -76,7 +75,7 @@ function save(){
                 ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
             }
         },
-        //error: problemas,
+        error: problemas,
         timeout: 40000
     });
     return false;
