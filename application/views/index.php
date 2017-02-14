@@ -4,10 +4,14 @@
     <title>Login</title>
     <!--css-->
     <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/ext-4.2.0/examples/shared/example.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/ext-4.2.0/examples/writer/writer.css')?>" rel="stylesheet">
 
     <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/funciones/login.js')?>"></script>
+    <script src="<?php echo base_url('assets/ext-4.2.0/examples/shared/include-ext.js')?>"></script>
+    <script src="<?php echo base_url('assets/ext-4.2.0/examples/shared/examples.js')?>"></script>
 </head>
 <body style="background: #AFC4D5;">
     <div class="container">    

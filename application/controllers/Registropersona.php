@@ -39,10 +39,10 @@ class Registropersona extends CI_Controller {
                 $flag = '1';
                 break;
             case 'add':
-                $data = $this->itinerario->insertViaje($_POST);
+                $data = $this->pasajero->insertPasajero($_POST);
                 break;
             case 'update':
-                $data = $this->itinerario->updateViaje($_POST);
+                $data = $this->pasajero->updatePasajero($_POST);
                 break;
         endswitch;
         if($flag == '1'){

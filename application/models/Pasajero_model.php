@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Pasajero_model extends CI_Model{
-    var $table = 'PASAJERO';
+    var $table = 'pasajero';
     var $column_order = array('IDPasajero','Nombres','Apellidos','Direccion','Dni','Telefono','Email','NRODOC','APEMAT','APEPAT','FECNAC','USUARIO','CONTRASENA');
     var $column_search = array('IDPasajero','Nombres','Apellidos','Direccion','Dni','Telefono','Email','NRODOC','APEMAT','APEPAT','FECNAC','USUARIO','CONTRASENA');
     var $order = array('IDPasajero' => 'desc');
@@ -12,31 +12,28 @@ class Pasajero_model extends CI_Model{
     }
 
     public function listaPasajero(){ 
-        $this->db->select('PASAJERO.*');
-        $this->db->from($this->table);
-        $this->db->order_by('PASAJERO.IDPasajero DESC');
+        $this->db->select('p.*');
+        $this->db->from('pasajero as p');
+        $this->db->order_by('p.IDPasajero DESC');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;
     }
     
     public function editarPasajero($IDPasajero){
-        $this->db->select('PASAJERO.*');
-        $this->db->from($this->table);
-        $this->db->where('PASAJERO.IDPasajero', $IDPasajero);
+        $this->db->select('p.*');
+        $this->db->from('pasajero as p');
+        $this->db->where('p.IDPasajero', $IDPasajero);
         $query = $this->db->get();
-        $data = $query->result_array(); 
+        $data = $query->result_array();
+        $data[0]['CONTRASENA'] = $this->desencriptar($data[0]['CONTRASENA']);
         return $data;
     }
     
-    
-    
-    
-
-    
-    public function insertBus($data){
+    public function insertPasajero($data){
         try {
-            unset($data['IdBus']);
+            unset($data['IDPasajero']);
+            $data['CONTRASENA'] = $this->encriptar($data['CONTRASENA']);
             $this->db->insert($this->table,$data);
             return 'Si';
         } catch (Exception $e) {
@@ -44,14 +41,28 @@ class Pasajero_model extends CI_Model{
         }
     }
     
-    public function updateBus($data){
+    public function updatePasajero($data){
         try {
-            $this->db->where('IdBus', $data['IdBus']);
-            unset($data['IdBus']);
+            $this->db->where('IDPasajero', $data['IDPasajero']);
+            unset($data['IDPasajero']);
+            $data['CONTRASENA'] = $this->encriptar($data['CONTRASENA']);
+            echo '<pre>';print_r($data);exit;
             $this->db->update($this->table,$data);
             return 'Si';
         } catch (Exception $e) {
             return 'Excepción capturada: '.  $e->getMessage(). "\n";
         }
+    }
+            
+    function encriptar($cadena){
+        $key='';
+        $encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $cadena, MCRYPT_MODE_CBC, md5(md5($key))));
+        return $encrypted;
+    }
+
+    function desencriptar($cadena){
+         $key='';
+         $decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($cadena), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+        return $decrypted;
     }
 }

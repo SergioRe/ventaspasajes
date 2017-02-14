@@ -145,11 +145,11 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <img class="img-responsive" src="http://placehold.it/200x180" alt=""><br/><br/><br/>
+                                <img class="img-responsive" src="http://placehold.it/200x180" alt=""><br/><br/>
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">TIPO USUARIO: </label>
                                     <div class="col-lg-7">
-                                        <select id="TIPUSU" name="TIPUSU" class="form-control">
+                                        <select id="TIPCOD" name="TIPCOD" class="form-control">
                                             <option value="4">Cliente</option>
                                         </select>
                                     </div>
@@ -163,7 +163,7 @@
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">PASSWORD: </label>
                                     <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="CONTRASENA" name="CONTRASENA" />
+                                        <input type="password" class="form-control" id="CONTRASENA" name="CONTRASENA" />
                                     </div>
                                 </div>
                                 <div class="form-group">

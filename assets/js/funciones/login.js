@@ -2,11 +2,15 @@ function validarLogin(){
     var usuarios = $('#USUARIO').val();
     var contrasena = $('#CONTRASENA').val();
     if(usuarios === ''){
-        alert('Debe ingresar el usuario.');
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el USUARIO.');
+        });
         return false;
     }
     if(contrasena === ''){
-        alert('Debe ingresar la contrasena.');
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar LA CONTRASEÑA.');
+        });
         return false;
     }
 }
