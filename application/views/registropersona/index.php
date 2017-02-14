@@ -24,7 +24,7 @@
         .panel-body table tr td { padding-left: 15px }
         .panel-body .table {margin-bottom: 0px; }
 
-        #tablebus_filter{
+        #tablepasajero_filter{
             display: none;
         }
         .selected{
@@ -97,22 +97,14 @@
                     <div class="well">
                         <center><b><p>REGISTRO PERSONAS</p></b></center>
                     </div>
-                    <form class="form-horizontal" id="formRegistroBus" name="formRegistroBus">
-                        <input type="hidden" id="IdBus" name="IdBus"/>
+                    <form class="form-horizontal" id="formRegistroPersona" name="formRegistroPersona">
+                        <input type="hidden" id="IDPasajero" name="IDPasajero"/>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">TIPO DOCUMENTO: </label>
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">DNI: </label>
                                     <div class="col-lg-7">
-                                        <select id="Dni" name="Dni" class="form-control">
-                                            <option value="1">DNI</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">NRO DOCUMENTO: </label>
-                                    <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="NRODOC" name="NRODOC" />
+                                        <input type="text" class="form-control" id="DNI" name="DNI" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -151,6 +143,9 @@
                                         <input type="text" class="form-control" id="Telefono" name="Telefono" />
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="http://placehold.it/200x180" alt=""><br/><br/><br/>
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">TIPO USUARIO: </label>
                                     <div class="col-lg-7">
@@ -178,9 +173,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <img class="img-responsive" src="http://placehold.it/200x180" alt="">
-                            </div>
                         </div>
                     </form>
                     <button type="button" class="btn btn-success btn-sm" id="btn-create" onclick="createrow();">
@@ -188,30 +180,34 @@
                     </button>
                     <button type="submit" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
                         <span class="glyphicon glyphicon-floppy-disk"></span> <b>Boton Guardar</b>
-                    </button><br/><br/>
-                    <div class="well">
-                        <center><b><p>LISTADO PERSONAS</p></b></center>
-                    </div>
-                    <table id="tablebus" class="table table-bordered display" cellspacing="0" width="100%">
-                        <thead style="background-color: #f5f5f5;">
-                            <tr>
-                                <th class="text-center">N</th>
-                                <th class="text-center">TIPO DOC</th>
-                                <th class="text-center">NRO DOC</th>
-                                <th class="text-center">APE PATERNO</th>
-                                <th class="text-center">APE MATERNO</th>
-                                <th class="text-center">NOMBRES</th>
-                                <th class="text-center">FECA NAC.</th>
-                                <th class="text-center">DIRECCIÓN</th>
-                                <th class="text-center">TELEFONO</th>
-                                <th class="text-center">EMAIL</th>
-                                <th class="text-center">EDITAR</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+                    </button>
                 </div>
+            </div>
+        </div>
+        <div class="row" style="background:#FFF;">
+            <div class="col-md-12"><br/>
+                <div class="well">
+                    <center><b><p>LISTADO PERSONAS</p></b></center>
+                </div>
+                <table id="tablepasajero" class="table table-bordered display" cellspacing="0" width="100%">
+                    <thead style="background-color: #f5f5f5;">
+                        <tr>
+                            <th class="text-center">N</th>
+                            <th class="text-center">TIPO DOC</th>
+                            <th class="text-center">NRO DOC</th>
+                            <th class="text-center">APE PATERNO</th>
+                            <th class="text-center">APE MATERNO</th>
+                            <th class="text-center">NOMBRES</th>
+                            <th class="text-center">FECA NAC.</th>
+                            <th class="text-center">DIRECCIÓN</th>
+                            <th class="text-center">TELEFONO</th>
+                            <th class="text-center">EMAIL</th>
+                            <th class="text-center">EDITAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

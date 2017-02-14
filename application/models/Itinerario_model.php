@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Itinerario_model extends CI_Model{
-    var $table = 'ITINERARIO';
+    var $table = 'itinerario';
     var $column_order = array('IDITINERARIO','FECHA_ITINERARIO','IDBUS','IDCHOFER','ORIGEN','DESTINO','FECHA_VIAJE','IDTIPO_SERVICIO','PRECIO','ASIENTO','HORA');
     var $column_search = array('IDITINERARIO','FECHA_ITINERARIO','IDBUS','IDCHOFER','ORIGEN','DESTINO','FECHA_VIAJE','IDTIPO_SERVICIO','PRECIO','ASIENTO','HORA');
     var $order = array('IDITINERARIO' => 'desc');
@@ -12,22 +12,22 @@ class Itinerario_model extends CI_Model{
     }
 
     public function listaviaje(){ 
-        $this->db->select("ITINERARIO.IDITINERARIO,B.IdBus,CONCAT(ITINERARIO.ORIGEN, ' - ',ITINERARIO.DESTINO) AS NOMVIAJE,  ITINERARIO.ORIGEN, ITINERARIO.DESTINO,B.NomBus,B.Placa,C.Chofer,ITINERARIO.HORA,ITINERARIO.HORAFIN");
-        $this->db->from($this->table);
-        $this->db->join('CHOFER AS C','C.IdChofer = ITINERARIO.IDCHOFER');
-        $this->db->join('BUS AS B','B.IdBus = ITINERARIO.IDBUS');
-        $this->db->order_by('ITINERARIO.IDITINERARIO DESC');
+        $this->db->select("i.IDITINERARIO,b.IdBus,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,  i.ORIGEN, i.DESTINO,b.NomBus,b.Placa,c.Chofer,i.HORA,i.HORAFIN");
+        $this->db->from('itinerario as i');
+        $this->db->join('chofer as c','c.IdChofer = i.IDCHOFER');
+        $this->db->join('bus as b','b.IdBus = i.IDBUS');
+        $this->db->order_by('i.IDITINERARIO DESC');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;
     }
     
     public function editarViaje($IDITINERARIO){
-        $this->db->select("ITINERARIO.IDITINERARIO,B.IdBus,CONCAT(ITINERARIO.ORIGEN, ' - ',ITINERARIO.DESTINO) AS NOMVIAJE,  ITINERARIO.ORIGEN, ITINERARIO.DESTINO,B.NomBus,B.Placa,C.Chofer,ITINERARIO.HORA,ITINERARIO.HORAFIN");
-        $this->db->from($this->table);
-        $this->db->join('CHOFER AS C','C.IdChofer = ITINERARIO.IDCHOFER');
-        $this->db->join('BUS AS B','B.IdBus = ITINERARIO.IDBUS');
-        $this->db->where('ITINERARIO.IDITINERARIO', $IDITINERARIO);
+        $this->db->select("i.IDITINERARIO,b.IdBus,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,  i.ORIGEN, i.DESTINO,b.NomBus,b.Placa,c.Chofer,i.HORA,i.HORAFIN");
+        $this->db->from('itinerario as i');
+        $this->db->join('chofer AS c','c.IdChofer = i.IDCHOFER');
+        $this->db->join('bus AS b','b.IdBus = i.IDBUS');
+        $this->db->where('i.IDITINERARIO', $IDITINERARIO);
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;

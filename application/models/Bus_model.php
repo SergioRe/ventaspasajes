@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Bus_model extends CI_Model{
-    var $table = 'BUS';
+    var $table = 'bus';
     var $column_order = array('IdBus','Placa','Motor','Año_Fabricacion','N_Asiento','Tipo_Bus','NomBus','IdChofer');
     var $column_search = array('IdBus','Placa','Motor','Año_Fabricacion','N_Asiento','Tipo_Bus','NomBus','IdChofer');
     var $order = array('IdBus' => 'desc');
@@ -12,20 +12,20 @@ class Bus_model extends CI_Model{
     }
 
     public function listaBus(){ 
-        $this->db->select('BUS.IdBus,BUS.Placa,BUS.N_Asiento,BUS.NomBus,CHOFER.Chofer,CHOFER.IdChofer');
-        $this->db->from($this->table);
-        $this->db->join('CHOFER','CHOFER.IdChofer = BUS.IdChofer');
-        $this->db->order_by('BUS.IdBus DESC');
+        $this->db->select('b.IdBus,b.Placa,b.N_Asiento,b.NomBus,chofer.Chofer,chofer.IdChofer');
+        $this->db->from('bus as b');
+        $this->db->join('chofer','chofer.IdChofer = b.IdChofer');
+        $this->db->order_by('b.IdBus DESC');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;
     }
     
     public function editarBus($IdBus){
-        $this->db->select('BUS.IdBus,BUS.Placa,BUS.N_Asiento,BUS.NomBus,CHOFER.Chofer,CHOFER.IdChofer');
-        $this->db->from($this->table);
-        $this->db->join('CHOFER','CHOFER.IdChofer = BUS.IdChofer');
-        $this->db->where('BUS.IdBus', $IdBus);
+        $this->db->select('b.IdBus,b.Placa,b.N_Asiento,b.NomBus,chofer.Chofer,chofer.IdChofer');
+        $this->db->from('bus as b');
+        $this->db->join('chofer','chofer.IdChofer = b.IdChofer');
+        $this->db->where('b.IdBus', $IdBus);
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;

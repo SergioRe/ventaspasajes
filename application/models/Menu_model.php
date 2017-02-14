@@ -2,7 +2,7 @@
 
 class Menu_model extends CI_Model{
 
-    var $table = 'MENU';
+    var $table = 'menu';
     var $column_order = array('MENID', 'USUCOD', 'MENNOM', 'MENURL', 'MENPERMISO', 'IDUSUARIO','MENICONO');
     var $column_search = array('MENID', 'USUCOD', 'MENNOM', 'MENURL', 'MENPERMISO', 'IDUSUARIO','MENICONO');
     var $order = array('MENID' => 'desc');
@@ -13,19 +13,19 @@ class Menu_model extends CI_Model{
     }
 
     public function menuPorUsuario($idusuario){ 
-        $this->db->select('MENU.MENID,MENU.USUCOD,MENU.MENNOM,MENU.MENURL,MENU.MENPERMISO,MENU.IDUSUARIO,MENU.MENICONO'); 
-        $this->db->from($this->table);
-        $this->db->where('MENU.IDUSUARIO', $idusuario);
-        $this->db->where('MENU.MENPERMISO', 'S');
+        $this->db->select('m.*'); 
+        $this->db->from('menu as m');
+        $this->db->where('m.IDUSUARIO', $idusuario);
+        $this->db->where('m.MENPERMISO', 'S');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;
     }
     
     public function menuPorUsuario1($idusuario){ 
-        $this->db->select('MENU.MENID,MENU.USUCOD,MENU.MENNOM,MENU.MENURL,MENU.MENPERMISO,MENU.IDUSUARIO,MENU.MENICONO'); 
-        $this->db->from($this->table);
-        $this->db->where('MENU.IDUSUARIO', $idusuario);
+        $this->db->select('m.*'); 
+        $this->db->from('menu as m');
+        $this->db->where('m.IDUSUARIO', $idusuario);
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;

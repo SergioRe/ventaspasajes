@@ -2,7 +2,7 @@
 
 class Usuarios_model extends CI_Model{
     
-    var $table = 'USUARIOS';
+    var $table = 'usuarios';
     var $column_order = array('IDUSUARIO', 'USUARIO', 'CONTRASENA', 'NOMBRES', 'APELLIDOS', 'DIRECCION', 'CARGO');
     var $column_search = array('IDUSUARIO', 'USUARIO', 'CONTRASENA', 'NOMBRES', 'APELLIDOS', 'DIRECCION', 'CARGO');
     var $order = array('IDUSUARIO' => 'desc');
@@ -13,10 +13,10 @@ class Usuarios_model extends CI_Model{
     }
 
     public function login($datos){ 
-        $this->db->select('USUARIOS.IDUSUARIO,USUARIOS.IDUSUARIO,USUARIOS.NOMBRES,USUARIOS.APELLIDOS,USUARIOS.CARGO'); 
-        $this->db->from($this->table);
-        $this->db->where('USUARIOS.USUARIO', $datos['USUARIO']);
-        $this->db->where('USUARIOS.CONTRASENA', $datos['CONTRASENA']);
+        $this->db->select('u.IDUSUARIO,u.IDUSUARIO,u.NOMBRES,u.APELLIDOS,u.CARGO'); 
+        $this->db->from('usuarios as u');
+        $this->db->where('u.USUARIO', $datos['USUARIO']);
+        $this->db->where('u.CONTRASENA', $datos['CONTRASENA']);
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;

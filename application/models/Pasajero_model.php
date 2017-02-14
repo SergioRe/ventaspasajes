@@ -20,27 +20,19 @@ class Pasajero_model extends CI_Model{
         return $data;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public function editarBus($IdBus){
-        $this->db->select('BUS.IdBus,BUS.Placa,BUS.N_Asiento,BUS.NomBus,CHOFER.Chofer,CHOFER.IdChofer');
+    public function editarPasajero($IDPasajero){
+        $this->db->select('PASAJERO.*');
         $this->db->from($this->table);
-        $this->db->join('CHOFER','CHOFER.IdChofer = BUS.IdChofer');
-        $this->db->where('BUS.IdBus', $IdBus);
+        $this->db->where('PASAJERO.IDPasajero', $IDPasajero);
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;
     }
+    
+    
+    
+    
+
     
     public function insertBus($data){
         try {

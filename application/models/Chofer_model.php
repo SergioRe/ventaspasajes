@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Chofer_model extends CI_Model{
-    var $table = 'CHOFER';
+    var $table = 'chofer';
     var $column_order = array('IdChofer','Chofer','Direccion','N_Brevete');
     var $column_search = array('IdChofer','Chofer','Direccion','N_Brevete');
     var $order = array('IdChofer' => 'desc');
@@ -12,9 +12,9 @@ class Chofer_model extends CI_Model{
     }
 
     public function listaChofer(){ 
-        $this->db->select('CHOFER.IdChofer,CHOFER.Chofer');
-        $this->db->from($this->table);
-        $this->db->order_by('CHOFER.IdChofer ASC');
+        $this->db->select('c.IdChofer,c.Chofer');
+        $this->db->from('chofer as c');
+        $this->db->order_by('c.IdChofer ASC');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;

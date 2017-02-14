@@ -1,7 +1,7 @@
 var table;
 $(document).ready(function() {
     var url = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/datapasajero';
-    table = $('#tablebus').DataTable({
+    table = $('#tablepasajero').DataTable({
         "pageLength": 10,
         "ajax": {
             "url": url,
@@ -26,7 +26,7 @@ $(document).ready(function() {
             ],
         "bLengthChange" : false,
         "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 0,1,2,3,4 ] }
+          { 'bSortable': false, 'aTargets': [ 0,1,2,3,4,5,6,7,8,9 ] }
         ],
         "language": {
             "sSearch": "",
@@ -45,7 +45,7 @@ $(document).ready(function() {
         }
     });
     
-    $('#tablebus tbody').on( 'click', 'tr', function () {
+    $('#tablepasajero tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -54,43 +54,85 @@ $(document).ready(function() {
             $(this).addClass('selected');
         }
         var data = table.row( this ).data();
-        editarbus(data.IdBus);
+        editarpersona(data.IDPasajero);
     });
 });
 
 function saverow(){
-    var IdBus = $("#IdBus").val();
-    var url2 = base_url + '/' + pathArray[1] + '/index.php/registrobus/json/';
+    var IDPasajero = $("#IDPasajero").val();
+    var url2 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/';
     var url3 = '';
-    var NomBus = $('#NomBus').val();
-    var Placa = $('#Placa').val();
-    var N_Asiento = $('#N_Asiento').val();
-    var IdChofer = $('#IdChofer').val();
-    if(NomBus === ''){
+    var Dni = $('#Dni').val();
+    var APEPAT = $('#APEPAT').val();
+    var APEMAT = $('#APEMAT').val();
+    var Nombres = $('#Nombres').val();
+    var FECNAC = $('#FECNAC').val();
+    var Direccion = $('#Direccion').val();
+    var Telefono = $('#Telefono').val();
+    var USUARIO = $('#USUARIO').val();
+    var CONTRASENA = $('#CONTRASENA').val();
+    var Email = $('#Email').val();
+    if(Dni === ''){
         Ext.onReady(function() {
-            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el NOMBRE BUS.');
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar su DNI.');
         });
         return false;
     }
-    if(Placa === ''){
+    if(APEPAT === ''){
         Ext.onReady(function() {
-            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el NRO PLACA.');
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar su APELLIDO PATERNO.');
         });
         return false;
     }
-    if(N_Asiento === ''){
+    if(APEMAT === ''){
         Ext.onReady(function() {
-            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el NUMERO ASIENTO.');
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar su APELLIDO MATERNO.');
         });
         return false;
     }
-    if(IdChofer === ''){
+    if(Nombres === ''){
         Ext.onReady(function() {
-            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el SELECCIONAR EL CHOFER.');
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el NOMBRE.');
         });
         return false;
     }
-    if(IdBus === ''){
+    if(FECNAC === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar la FECHA NAC.');
+        });
+        return false;
+    }
+    if(Direccion === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar la DIRECCIÓN.');
+        });
+        return false;
+    }
+    if(Telefono === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el TELEFONO.');
+        });
+        return false;
+    }
+    if(USUARIO === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el USUARIO.');
+        });
+        return false;
+    }
+    if(CONTRASENA === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el CONTRASEÑA.');
+        });
+        return false;
+    }
+    if(Email === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el Email.');
+        });
+        return false;
+    }
+    if(IDPasajero === ''){
         url3 = url2 + 'add';
     }else{
         url3 = url2 + 'update';
@@ -99,7 +141,7 @@ function saverow(){
         url : url3,
         type: "POST",
         dataType: "JSON",
-        data: $('#formRegistroBus').serialize(),
+        data: $('#formRegistroPersona').serialize(),
         beforeSend:cargando,
         success: function(result){
             Ext.getBody().unmask();
@@ -116,20 +158,27 @@ function saverow(){
     });
 }
 
-function editarbus(IdBus){
-    var url1 = base_url + '/' + pathArray[1] + '/index.php/registrobus/json/editarbus';
+function editarpersona(IDPasajero){
+    var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/editarpasajero';
     $.ajax({
         url : url1,
         type: "POST",
         dataType: "JSON",
-        data: {IdBus:IdBus},
+        data: {IDPasajero:IDPasajero},
         success: function(data){
             $.each(data, function(k,v){
-                $("#IdBus").val(data[k].IdBus);
-                $("#Placa").val(data[k].Placa);
-                $("#NomBus").val(data[k].NomBus);
-                $("#N_Asiento").val(data[k].N_Asiento);
-                $("#IdChofer").val(data[k].IdChofer);
+                $("#IDPasajero").val(data[k].IDPasajero);
+                $("#Dni").val(data[k].Dni);
+                $("#APEPAT").val(data[k].APEPAT);
+                $("#APEMAT").val(data[k].APEMAT);
+                $("#Nombres").val(data[k].Nombres);
+                $("#FECNAC").val(data[k].FECNAC);
+                $("#Direccion").val(data[k].Direccion);
+                $("#Telefono").val(data[k].Telefono);
+                $("#TIPUSU").val(data[k].TIPUSU);
+                $("#USUARIO").val(data[k].USUARIO);
+                $("#CONTRASENA").val(data[k].CONTRASENA);
+                $("#Email").val(data[k].Email);
             });
         },
         timeout:40000
@@ -141,9 +190,16 @@ function reload_table(){
 }
 
 function createrow(){
-    $('#IdBus').val('');
-    $('#NomBus').val('');
-    $('#Placa').val('');
-    $('#N_Asiento').val('');
-    $('#IdChofer').val('');
+    $('#IDPasajero').val('');
+    $('#Dni').val('');
+    $('#APEPAT').val('');
+    $('#APEMAT').val('');
+    $('#Nombres').val('');
+    $('#FECNAC').val('');
+    $('#Direccion').val('');
+    $('#Telefono').val('');
+    $('#TIPUSU').val('');
+    $('#USUARIO').val('');
+    $('#CONTRASENA').val('');
+    $('#Email').val('');
 }

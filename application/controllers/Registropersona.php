@@ -34,8 +34,8 @@ class Registropersona extends CI_Controller {
             case 'datapasajero':
                 $data = $this->pasajero->listaPasajero();
                 break;
-            case 'editarviaje':
-                $data = $this->itinerario->editarViaje($_POST['IDITINERARIO']);
+            case 'editarpasajero':
+                $data = $this->pasajero->editarPasajero($_POST['IDPasajero']);
                 $flag = '1';
                 break;
             case 'add':

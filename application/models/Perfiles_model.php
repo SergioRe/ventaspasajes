@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Perfiles_model extends CI_Model{
-    var $table = 'PERFILES';
+    var $table = 'perfiles';
     var $column_order = array('IdBus','Placa','Motor','Año_Fabricacion','N_Asiento','Tipo_Bus','NomBus','IdChofer');
     var $column_search = array('IdBus','Placa','Motor','Año_Fabricacion','N_Asiento','Tipo_Bus','NomBus','IdChofer');
     var $order = array('IdBus' => 'desc');
@@ -12,8 +12,8 @@ class Perfiles_model extends CI_Model{
     }
 
     public function listaPerfiles(){ 
-        $this->db->select('PERFILES.*');
-        $this->db->from($this->table);
+        $this->db->select('p.*');
+        $this->db->from('p as p');
         $this->db->order_by('PERFILES.TIPCOD ASC');
         $query = $this->db->get();
         $data = $query->result_array(); 
@@ -21,10 +21,10 @@ class Perfiles_model extends CI_Model{
     }
     
     public function listaUsuariosPorPerfil($TIPCOD){
-        $this->db->select('USUARIOS.*');
-        $this->db->from('USUARIOS');
-        $this->db->where('USUARIOS.TIPCOD', $TIPCOD);
-        $this->db->order_by('USUARIOS.IDUSUARIO ASC');
+        $this->db->select('u.*');
+        $this->db->from('usuarios as u');
+        $this->db->where('u.TIPCOD', $TIPCOD);
+        $this->db->order_by('u.IDUSUARIO ASC');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;

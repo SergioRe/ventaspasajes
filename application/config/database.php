@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'RENATO-PC\SQLEXPRESS',
-	//'username' => 'sa',
-	//'password' => 'admin',
-	'database' => 'VENTAS_PASAJE_TRANSPORTES',
-	'dbdriver' => 'sqlsrv',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'ventas_pasaje_transportes',
+	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
