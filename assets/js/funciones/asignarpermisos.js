@@ -69,6 +69,7 @@ function save(){
         data: {data:data},
         beforeSend:cargando,
         success: function(result){
+            Ext.getBody().unmask();
             if(result.data === 'Si'){
                 Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
             }else{

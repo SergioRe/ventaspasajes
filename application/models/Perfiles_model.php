@@ -13,8 +13,8 @@ class Perfiles_model extends CI_Model{
 
     public function listaPerfiles(){ 
         $this->db->select('p.*');
-        $this->db->from('p as p');
-        $this->db->order_by('PERFILES.TIPCOD ASC');
+        $this->db->from('perfiles as p');
+        $this->db->order_by('p.TIPCOD ASC');
         $query = $this->db->get();
         $data = $query->result_array(); 
         return $data;
