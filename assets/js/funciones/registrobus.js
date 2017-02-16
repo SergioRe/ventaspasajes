@@ -50,7 +50,16 @@ $(document).ready(function() {
         var data = table.row( this ).data();
         editarbus(data.IdBus);
     });
+    
+    $('input.column_filter').on( 'keyup click', function () {
+        filterColumn( $(this).parents('div').attr('data-column') );
+    });
 });
+
+function filterColumn ( i ) {
+    table.column( i ).search(
+    $('#col'+i+'_filter').val()).draw();
+}
 
 function saverow(){
     var IdBus = $("#IdBus").val();

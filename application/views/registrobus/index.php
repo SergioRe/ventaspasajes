@@ -149,6 +149,18 @@
                     <div class="well">
                         <center><b><p>LISTADO BUSES</p></b></center>
                     </div>
+                    <form class="form-horizontal izquierda" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">NOMBRE BUS: </label>
+                            <div class="col-sm-3" id="filter_col1" data-column="0">
+                                <input type="text" class="column_filter form-control" id="col0_filter" placeholder="INGRESE NOMBRE BUS">
+                            </div>
+                            <label class="control-label col-sm-2 letra1" for="pwd">NRO PLACA: </label>
+                            <div class="col-sm-3" id="filter_col2" data-column="1">          
+                                <input type="text" class="column_filter form-control letra1" id="col1_filter" placeholder="INGRESE NRO PLACA">
+                            </div>
+                        </div>
+                    </form>
                     <table id="tablebus" class="table table-bordered display" cellspacing="0" width="100%">
                         <thead style="background-color: #f5f5f5;">
                             <tr>

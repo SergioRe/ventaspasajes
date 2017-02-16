@@ -10,8 +10,7 @@ $(document).ready(function() {
         "columns": 
             [
                 {"data": "IDPasajero"},
-                {"data": "Dni"},
-                {"data": "NRODOC"},
+                {"data": "DNI"},
                 {"data": "APEPAT"},
                 {"data": "APEMAT"},
                 {"data": "Nombres"},
@@ -56,13 +55,22 @@ $(document).ready(function() {
         var data = table.row( this ).data();
         editarpersona(data.IDPasajero);
     });
+    
+    $('input.column_filter').on( 'keyup click', function () {
+        filterColumn( $(this).parents('div').attr('data-column') );
+    });
 });
+
+function filterColumn ( i ) {
+    table.column( i ).search(
+    $('#col'+i+'_filter').val()).draw();
+}
 
 function saverow(){
     var IDPasajero = $("#IDPasajero").val();
     var url2 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/';
     var url3 = '';
-    var Dni = $('#Dni').val();
+    var Dni = $('#DNI').val();
     var APEPAT = $('#APEPAT').val();
     var APEMAT = $('#APEMAT').val();
     var Nombres = $('#Nombres').val();
@@ -168,16 +176,13 @@ function editarpersona(IDPasajero){
         success: function(data){
             $.each(data, function(k,v){
                 $("#IDPasajero").val(data[k].IDPasajero);
-                $("#Dni").val(data[k].Dni);
+                $("#DNI").val(data[k].DNI);
                 $("#APEPAT").val(data[k].APEPAT);
                 $("#APEMAT").val(data[k].APEMAT);
                 $("#Nombres").val(data[k].Nombres);
                 $("#FECNAC").val(data[k].FECNAC);
                 $("#Direccion").val(data[k].Direccion);
                 $("#Telefono").val(data[k].Telefono);
-                $("#TIPUSU").val(data[k].TIPUSU);
-                $("#USUARIO").val(data[k].USUARIO);
-                $("#CONTRASENA").val(data[k].CONTRASENA);
                 $("#Email").val(data[k].Email);
             });
         },
@@ -191,15 +196,12 @@ function reload_table(){
 
 function createrow(){
     $('#IDPasajero').val('');
-    $('#Dni').val('');
+    $('#DNI').val('');
     $('#APEPAT').val('');
     $('#APEMAT').val('');
     $('#Nombres').val('');
     $('#FECNAC').val('');
     $('#Direccion').val('');
     $('#Telefono').val('');
-    $('#TIPUSU').val('');
-    $('#USUARIO').val('');
-    $('#CONTRASENA').val('');
     $('#Email').val('');
 }

@@ -24,7 +24,7 @@
         .panel-body table tr td { padding-left: 15px }
         .panel-body .table {margin-bottom: 0px; }
 
-        #tablebus_filter{
+        #tablechofer_filter{
             display: none;
         }
         .selected{
@@ -134,6 +134,18 @@
                     <div class="well">
                         <center><b><p>LISTADO CHOFERES</p></b></center>
                     </div>
+                    <form class="form-horizontal izquierda" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3" for="email">NOMBRE CHOFER: </label>
+                            <div class="col-sm-3" id="filter_col1" data-column="0">
+                                <input type="text" class="column_filter form-control" id="col0_filter" placeholder="INGRESE EL NOMBRE CHOFER">
+                            </div>
+                            <label class="control-label col-sm-2 letra1" for="pwd">NÚM. BREVETE: </label>
+                            <div class="col-sm-3" id="filter_col3" data-column="2">          
+                                <input type="text" class="column_filter form-control letra1" id="col2_filter" placeholder="INGRESE EL NÚM. BREVETE">
+                            </div>
+                        </div>
+                    </form>
                     <table id="tablechofer" class="table table-bordered display" cellspacing="0" width="100%">
                         <thead style="background-color: #f5f5f5;">
                             <tr>

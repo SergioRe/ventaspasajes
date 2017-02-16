@@ -24,7 +24,7 @@
         .panel-body table tr td { padding-left: 15px }
         .panel-body .table {margin-bottom: 0px; }
 
-        #tableviaje_filter{
+        #tablehorario_filter{
             display: none;
         }
         .selected{
@@ -134,6 +134,18 @@
                     <div class="well">
                         <center><b><p>LISTADO TARIFAS</p></b></center>
                     </div>
+                    <form class="form-horizontal izquierda" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">VIAJE: </label>
+                            <div class="col-sm-3" id="filter_col1" data-column="0">
+                                <input type="text" class="column_filter form-control" id="col0_filter" placeholder="INGRESE VIAJE">
+                            </div>
+                            <label class="control-label col-sm-2 letra1" for="pwd">NOMBRE CHOFER: </label>
+                            <div class="col-sm-3" id="filter_col7" data-column="6">          
+                                <input type="text" class="column_filter form-control" id="col6_filter" placeholder="INGRESE EL NOMBRE CHOFER">
+                            </div>
+                        </div>
+                    </form>
                     <table id="tablehorario" class="table table-bordered display" cellspacing="0" width="100%">
                         <thead style="background-color: #f5f5f5;">
                             <tr>

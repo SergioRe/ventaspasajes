@@ -2,8 +2,8 @@
 
 class Pasajero_model extends CI_Model{
     var $table = 'pasajero';
-    var $column_order = array('IDPasajero','Nombres','Apellidos','Direccion','Dni','Telefono','Email','NRODOC','APEMAT','APEPAT','FECNAC','USUARIO','CONTRASENA');
-    var $column_search = array('IDPasajero','Nombres','Apellidos','Direccion','Dni','Telefono','Email','NRODOC','APEMAT','APEPAT','FECNAC','USUARIO','CONTRASENA');
+    var $column_order = array('IDPasajero','Nombres','Apellidos','Direccion','DNI','Telefono','Email','APEMAT','APEPAT','FECNAC');
+    var $column_search = array('IDPasajero','Nombres','Apellidos','Direccion','DNI','Telefono','Email','APEMAT','APEPAT','FECNAC');
     var $order = array('IDPasajero' => 'desc');
 
     function __construct(){
@@ -26,14 +26,12 @@ class Pasajero_model extends CI_Model{
         $this->db->where('p.IDPasajero', $IDPasajero);
         $query = $this->db->get();
         $data = $query->result_array();
-        $data[0]['CONTRASENA'] = $this->desencriptar($data[0]['CONTRASENA']);
         return $data;
     }
     
     public function insertPasajero($data){
         try {
             unset($data['IDPasajero']);
-            $data['CONTRASENA'] = $this->encriptar($data['CONTRASENA']);
             $this->db->insert($this->table,$data);
             return 'Si';
         } catch (Exception $e) {
@@ -45,24 +43,10 @@ class Pasajero_model extends CI_Model{
         try {
             $this->db->where('IDPasajero', $data['IDPasajero']);
             unset($data['IDPasajero']);
-            $data['CONTRASENA'] = $this->encriptar($data['CONTRASENA']);
-            echo '<pre>';print_r($data);exit;
             $this->db->update($this->table,$data);
             return 'Si';
         } catch (Exception $e) {
             return 'Excepción capturada: '.  $e->getMessage(). "\n";
         }
-    }
-            
-    function encriptar($cadena){
-        $key='';
-        $encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $cadena, MCRYPT_MODE_CBC, md5(md5($key))));
-        return $encrypted;
-    }
-
-    function desencriptar($cadena){
-         $key='';
-         $decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($cadena), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
-        return $decrypted;
     }
 }
