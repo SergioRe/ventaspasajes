@@ -1,4 +1,5 @@
 var table;
+var aregloAsientos = [];
 $(document).ready(function() {
     var url = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/datapasajero';
     table = $('#tablepasajero').DataTable({
@@ -268,9 +269,35 @@ function datositinerario(IDITINERARIO){
 }
 
 function seleccionarasiento(numasiento){
-    $('#'+numasiento).css('background-color','#F5DA81');
+    var valor = verificarExistencia(numasiento);
+    if(valor === '1'){
+        remove(aregloAsientos,numasiento);
+        $('#'+numasiento).css('background-color','#FFFFFF');
+    }else{
+        aregloAsientos.push(numasiento);
+        $('#'+numasiento).css('background-color','#F5DA81');
+    }
+    alert(aregloAsientos);
+}
+
+function remove(arr, item) {
+    for(var i = arr.length; i--;) {
+        if(arr[i] === item) {
+            arr.splice(i, 1);
+        }
+    }
+}
+
+function verificarExistencia(numasiento){
+    for(var i = 0; i < aregloAsientos.length; i++) {
+        if (aregloAsientos[i] === numasiento) {
+            return '1';
+        }
+    }
+    return '2';
 }
 
 function saveventa(){
     alert('Estamos en proceso');
 }
+
