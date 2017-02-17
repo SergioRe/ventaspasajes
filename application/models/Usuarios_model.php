@@ -23,9 +23,87 @@ class Usuarios_model extends CI_Model{
         return $data;
     }
     
+    public function listarUsuarios(){ 
+        $this->db->select('u.*');
+        $this->db->from('usuarios as u');
+        $this->db->order_by('u.IDUSUARIO DESC');
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return $data;
+    }
+
+    public function editarUsuario($IDUSUARIO){
+        $this->db->select('u.*');
+        $this->db->from('usuarios as u');
+        $this->db->where('u.IDUSUARIO', $IDUSUARIO);
+        $query = $this->db->get();
+        $data = $query->result_array();
+        $data[0]['CONTRASENA'] = $this->desencriptar($data[0]['CONTRASENA']);
+        return $data;
+    }
+
+    public function insertUsuario($data){
+        try {
+            unset($data['IDUSUARIO']);
+            $data['CONTRASENA'] = $this->encriptar($data['CONTRASENA']);
+            $data['TIPCOD'] = '';
+            switch ($data['CARGO']):
+                case '1':
+                    $data['CARGO'] = 'Administrador de Sistemas';
+                    $data['TIPCOD']= '1';
+                    break;
+                case '2':
+                    $data['CARGO'] = 'Vendedor';
+                    $data['TIPCOD'] = '2';
+                    break;
+                case '3':
+                    $data['CARGO'] = 'Supervisor';
+                    $data['TIPCOD'] = '3';
+                    break;
+            endswitch;
+            $this->db->insert($this->table,$data);
+            return 'Si';
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+    }
+
+    public function updateUsuario($data){
+        try {
+            $data['CONTRASENA'] = $this->encriptar($data['CONTRASENA']);
+            $data['TIPCOD'] = '';
+            switch ($data['CARGO']):
+                case '1':
+                    $data['CARGO'] = 'Administrador de Sistemas';
+                    $data['TIPCOD']= '1';
+                    break;
+                case '2':
+                    $data['CARGO'] = 'Vendedor';
+                    $data['TIPCOD'] = '2';
+                    break;
+                case '3':
+                    $data['CARGO'] = 'Supervisor';
+                    $data['TIPCOD'] = '3';
+                    break;
+            endswitch;
+            $this->db->where('IDUSUARIO', $data['IDUSUARIO']);
+            unset($data['IDUSUARIO']);
+            $this->db->update($this->table,$data);
+            return 'Si';
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+    }
+
     function encriptar($cadena){
         $key='';
         $encrypted = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($key), $cadena, MCRYPT_MODE_CBC, md5(md5($key))));
         return $encrypted;
+    }
+
+    function desencriptar($cadena){
+        $key='';  // Una clave de codificacion, debe usarse la misma para encriptar y desencriptar
+        $decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($cadena), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
+        return $decrypted;  //Devuelve el string desencriptado
     }
 }

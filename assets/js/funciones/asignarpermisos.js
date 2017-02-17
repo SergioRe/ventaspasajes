@@ -1,3 +1,6 @@
+$(document).ready(function() {
+    $('#btn-save').css('display','none');
+});
 function perfilesNom(){
     var cboperfil = $("#cboperfil").val();
     if(cboperfil === ''){
@@ -7,6 +10,7 @@ function perfilesNom(){
         return false;
     }
     $('#btn-save').css('display','none');
+    $('#listaMenuPorUsuario').css('display','none');
     $.ajax({
         async:true,
         dataType: "html",
@@ -35,6 +39,7 @@ function listaMenuPorUsuario(IDUSUARIO){
         return false;
     }
     $('#btn-save').css('display','none');
+    $('#listaMenuPorUsuario').css('display','none');
     $.ajax({
         async:true,
         dataType: "html",
@@ -47,6 +52,7 @@ function listaMenuPorUsuario(IDUSUARIO){
         success: function(result){
             Ext.getBody().unmask();
             $('#btn-save').css('display','block');
+            $('#listaMenuPorUsuario').css('display','block');
             $("#listaMenuPorUsuario").html(result);
         },
         error:problemas,
