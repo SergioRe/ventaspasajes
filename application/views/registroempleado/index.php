@@ -133,13 +133,13 @@
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">USUARIO: </label>
                                     <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="USUARIO" name="USUARIO" onkeypress="return validarNumeros(event)" />
+                                        <input type="text" class="form-control" id="USUARIO" name="USUARIO" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">CONTRASEÑA: </label>
                                     <div class="col-lg-7">
-                                        <input type="password" class="form-control" id="CONTRASENA" name="CONTRASENA" onkeypress="return validarNumeros(event)" />
+                                        <input type="password" class="form-control" id="CONTRASENA" name="CONTRASENA" />
                                     </div>
                                 </div>
                             </div>

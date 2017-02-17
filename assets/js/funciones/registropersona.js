@@ -11,26 +11,16 @@ $(document).ready(function() {
             [
                 {"data": "IDPasajero"},
                 {"data": "DNI"},
-                {"data": "APEPAT"},
-                {"data": "APEMAT"},
-                {"data": "Nombres"},
-                {"data": "FECNAC"},
-                {"data": "Direccion"},
-                {"data": "Telefono"},
-                {"data": "Email"},
-                {
-             bSortable: false,
-                mRender: function (o) { return '<center><span class="glyphicon glyphicon-pencil"></span></center>'; }
-            }
+                {"data": "Nombres"}
             ],
         "bLengthChange" : false,
         "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 0,1,2,3,4,5,6,7,8,9 ] }
+          { 'bSortable': false, 'aTargets': [ 0,1,2 ] }
         ],
         "language": {
             "sSearch": "",
             "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando paginas _PAGE_ de _PAGES_, total de filas _MAX_.",
+            "info": "Paginas _PAGE_ de _PAGES_, total _MAX_.",
             "infoEmpty": "Ning&uacute;n dato disponible en esta tabla",
             "infoFiltered": "(filtrando _MAX_ filas en total)",
             "sProcessing":   "Procesando...",
@@ -204,4 +194,83 @@ function createrow(){
     $('#Direccion').val('');
     $('#Telefono').val('');
     $('#Email').val('');
+}
+
+function generarventa(){
+    var IDPasajero = $("#IDPasajero").val();
+    if(IDPasajero === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un cliente para poder realizar la venta.');
+        });
+        return false;
+    }
+    $.ajax({
+        dataType: "html",
+        url: "modalventa",
+        method: "POST",
+        beforeSend:cargando,
+        success: function(result){
+            Ext.getBody().unmask();
+            $("#modalventa").html(result);
+            $("#ModalRegistroVenta").modal("show");
+            $('#itinerario').css('display','none');
+            $('#tableasientos1').css('display','none');
+        },
+        error:problemas,
+        timeout:40000
+    });
+}
+
+function cancelar(){
+    $("#ModalRegistroVenta").modal("hide");
+    $('#itinerario').css('display','none');
+    $('#itinerario').css('display','none');
+    $('#tableasientos1').css('display','none');
+}
+
+function datositinerario(IDITINERARIO){
+    if(IDITINERARIO === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar una Ruta.');
+        });
+        $('#itinerario').css('display','none');
+        $('#tableasientos1').css('display','none');
+        return false;
+    }
+    var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/dataitinerario';
+    $.ajax({
+        url : url1,
+        type: "POST",
+        dataType: "JSON",
+        data: {IDITINERARIO:IDITINERARIO},
+        success: function(data){
+            $('#itinerario').css('display','block');
+            $('#tableasientos1').css('display','block');
+            $.each(data, function(k,v){
+                $("#IDBUS").val(data[k].IDBUS);
+                $("#IDCHOFER").val(data[k].IDCHOFER);
+                $("#IDITINERARIO").val(data[k].IDITINERARIO);
+                $("#NOMVIAJE").val(data[k].NOMVIAJE);
+                $("#FECHA_ITINERARIO").val(data[k].FECHA_ITINERARIO);
+                $("#Chofer").val(data[k].Chofer);
+                $("#Direccion1").val(data[k].Direccion);
+                $("#N_Brevete").val(data[k].N_Brevete);
+                $("#NomBus").val(data[k].NomBus);
+                $("#Placa").val(data[k].Placa);
+                $("#N_Asiento").val(data[k].N_Asiento);
+                $("#HORA").val(data[k].HORA);
+                $("#HORAFIN").val(data[k].HORAFIN);
+                $("#PRECIO").val(data[k].PRECIO);
+            });
+        },
+        timeout:40000
+    });
+}
+
+function seleccionarasiento(numasiento){
+    $('#'+numasiento).css('background-color','#F5DA81');
+}
+
+function saveventa(){
+    alert('Estamos en proceso');
 }

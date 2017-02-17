@@ -12,7 +12,7 @@ class Itinerario_model extends CI_Model{
     }
 
     public function listaviaje(){ 
-        $this->db->select("i.IDITINERARIO,b.IdBus,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,  i.ORIGEN, i.DESTINO,b.NomBus,b.Placa,c.Chofer,i.HORA,i.HORAFIN");
+        $this->db->select("i.*,b.*,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,c.*");
         $this->db->from('itinerario as i');
         $this->db->join('chofer as c','c.IdChofer = i.IDCHOFER');
         $this->db->join('bus as b','b.IdBus = i.IDBUS');
@@ -23,7 +23,7 @@ class Itinerario_model extends CI_Model{
     }
     
     public function editarViaje($IDITINERARIO){
-        $this->db->select("i.IDITINERARIO,b.IdBus,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,  i.ORIGEN, i.DESTINO,b.NomBus,b.Placa,c.Chofer,i.HORA,i.HORAFIN");
+        $this->db->select("i.*,b.*,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,c.*");
         $this->db->from('itinerario as i');
         $this->db->join('chofer AS c','c.IdChofer = i.IDCHOFER');
         $this->db->join('bus AS b','b.IdBus = i.IDBUS');

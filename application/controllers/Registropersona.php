@@ -44,11 +44,27 @@ class Registropersona extends CI_Controller {
             case 'update':
                 $data = $this->pasajero->updatePasajero($_POST);
                 break;
+            case 'dataitinerario':
+                $data = $this->itinerario->editarViaje($_POST['IDITINERARIO']);
+                $flag = '1';
+                break;
         endswitch;
         if($flag == '1'){
             echo json_encode($data);
         }else{
             echo json_encode(array("data" => $data));
+        }
+    }
+    
+    public function modalventa(){
+        $this->load->helper('url');
+        $data = array();
+        if($this->session->userdata('logged_in')){
+            $data['listaitinerario'] = $this->itinerario->listaviaje();
+            $data['numasientos'] = $data['listaitinerario'][0]['ASIENTO'];
+            $this->load->view('registropersona/modalventa',$data);
+        }else{
+            redirect('/inicio/index');
         }
     }
 }

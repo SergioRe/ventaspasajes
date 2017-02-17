@@ -95,7 +95,7 @@
             <div class="col-md-9">
                 <div class="thumbnail">
                     <div class="well">
-                        <center><b><p>REGISTRO PERSONAS</p></b></center>
+                        <center><b><p>REGISTRO DE VENTAS</p></b></center>
                     </div>
                     <form class="form-horizontal" id="formRegistroPersona" name="formRegistroPersona">
                         <input type="hidden" id="IDPasajero" name="IDPasajero"/>
@@ -104,7 +104,7 @@
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">DNI: </label>
                                     <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="DNI" name="DNI" />
+                                        <input type="text" class="form-control" onkeypress="return validarNumeros(event)" id="DNI" name="DNI" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -137,9 +137,6 @@
                                         <input type="text" class="form-control" id="Direccion" name="Direccion" />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <img class="img-responsive" src="http://placehold.it/200x180" alt=""><br/><br/>
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">TELEFÓNO: </label>
                                     <div class="col-lg-7">
@@ -153,6 +150,29 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1" for="email">DNI: </label>
+                                    <div class="col-sm-4" id="filter_col2" data-column="1">
+                                        <input type="text" class="column_filter form-control" id="col1_filter" placeholder="DNI">
+                                    </div>
+                                    <label class="control-label col-sm-2 letra1" for="pwd">NOMBRES: </label>
+                                    <div class="col-sm-5" id="filter_col6" data-column="5">          
+                                        <input type="text" class="column_filter form-control letra1" id="col5_filter" placeholder="NOMBRES">
+                                    </div>
+                                </div>
+                                <table id="tablepasajero" class="table table-bordered display" cellspacing="0" width="100%">
+                                    <thead style="background-color: #f5f5f5;">
+                                        <tr>
+                                            <th class="text-center">N</th>
+                                            <th class="text-center">DNI</th>
+                                            <th class="text-center">NOMBRES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </form>
                     <button type="button" class="btn btn-success btn-sm" id="btn-create" onclick="createrow();">
@@ -161,48 +181,19 @@
                     <button type="submit" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
                         <span class="glyphicon glyphicon-floppy-disk"></span> <b>Boton Guardar</b>
                     </button>
+                    <button type="submit" class="btn btn-info btn-sm" id="btn-save" onclick="generarventa();">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> <b>Generar Venta</b>
+                    </button>
                 </div>
             </div>
         </div>
         <div class="row" style="background:#FFF;">
             <div class="col-md-12"><br/>
                 <div class="well">
-                    <center><b><p>LISTADO PERSONAS</p></b></center>
+                    <center><b><p>LISTADO DE VENTAS</p></b></center>
                 </div>
-                <form class="form-horizontal izquierda" role="form">
-                    <div class="form-group">
-                        <label class="control-label col-sm-1" for="email">DNI: </label>
-                        <div class="col-sm-1" id="filter_col2" data-column="1">
-                            <input type="text" class="column_filter form-control" id="col1_filter" placeholder="INGRESE EL DNI">
-                        </div>
-                        <label class="control-label col-sm-2 letra1" for="pwd">NOMBRES: </label>
-                        <div class="col-sm-3" id="filter_col6" data-column="5">          
-                            <input type="text" class="column_filter form-control letra1" id="col5_filter" placeholder="INGRESE EL NOMBRE">
-                        </div>
-                        <label class="control-label col-sm-2 letra1" for="pwd">EMAIL: </label>
-                        <div class="col-sm-3" id="filter_col10" data-column="9">          
-                            <input type="text" class="column_filter form-control letra1" id="col9_filter" placeholder="INGRESE EL EMAIL">
-                        </div>
-                    </div>
-                </form>
-                <table id="tablepasajero" class="table table-bordered display" cellspacing="0" width="100%">
-                    <thead style="background-color: #f5f5f5;">
-                        <tr>
-                            <th class="text-center">N</th>
-                            <th class="text-center">DNI</th>
-                            <th class="text-center">APE PATERNO</th>
-                            <th class="text-center">APE MATERNO</th>
-                            <th class="text-center">NOMBRES</th>
-                            <th class="text-center">FECA NAC.</th>
-                            <th class="text-center">DIRECCIÓN</th>
-                            <th class="text-center">TELEFONO</th>
-                            <th class="text-center">EMAIL</th>
-                            <th class="text-center">EDITAR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                
+                
             </div>
         </div>
     </div>
@@ -217,6 +208,7 @@
             </div>
         </footer>
     </div>
+    <div id="modalventa"></div>
 </body>
 </html>
 
