@@ -78,5 +78,17 @@ class Registropersona extends CI_Controller {
             redirect('/inicio/index');
         }
     }
+    
+    public function dataitinerario(){
+        $this->load->helper('url');
+        $data = array();
+        if($this->session->userdata('logged_in')){
+            $data['itinerario'] = $this->itinerario->editarViaje($_POST['IDITINERARIO']);
+            $data['dataasientos'] = $this->itinerario->asientosOcupados($_POST['IDITINERARIO']);
+            $this->load->view('registropersona/dataitinerario',$data);
+        }else{
+            redirect('/inicio/index');
+        }
+    }
 }
     

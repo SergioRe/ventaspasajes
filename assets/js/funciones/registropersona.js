@@ -238,33 +238,16 @@ function datositinerario(IDITINERARIO){
         $('#tableasientos1').css('display','none');
         return false;
     }
-    var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/dataitinerario';
+    var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/dataitinerario';
     $.ajax({
+        dataType: "html",
         url : url1,
-        type: "POST",
-        dataType: "JSON",
+        method: "POST",
         data: {IDITINERARIO:IDITINERARIO},
-        success: function(data){
+        success: function(result){
             $('#itinerario').css('display','block');
             $('#tableasientos1').css('display','block');
-            $.each(data, function(k,v){
-                $("#IDBUS").val(data[k].IDBUS);
-                $("#IDCHOFER").val(data[k].IDCHOFER);
-                $("#IDITINERARIO").val(data[k].IDITINERARIO);
-                $("#NOMVIAJE").val(data[k].NOMVIAJE);
-                $("#FECHA_ITINERARIO").val(data[k].FECHA_ITINERARIO);
-                $("#Chofer").val(data[k].Chofer);
-                $("#Direccion1").val(data[k].Direccion);
-                $("#N_Brevete").val(data[k].N_Brevete);
-                $("#NomBus").val(data[k].NomBus);
-                $("#Placa").val(data[k].Placa);
-                $("#N_Asiento").val(data[k].N_Asiento);
-                $("#HORA").val(data[k].HORA);
-                $("#HORAFIN").val(data[k].HORAFIN);
-                $("#PRECIO").val(data[k].PRECIO);
-                $("#FECHA_VIAJE").val(data[k].FECHA_VIAJE);
-                $("#DESTINO").val(data[k].DESTINO);
-            });
+            $("#itinerario").html(result);
         },
         timeout:40000
     });
@@ -274,10 +257,10 @@ function seleccionarasiento(numasiento){
     var valor = verificarExistencia(numasiento);
     if(valor === '1'){
         remove(aregloAsientos,numasiento);
-        $('#'+numasiento).css('background-color','#FFFFFF');
+        $('#'+numasiento).css('background-color','#0431B4');
     }else{
         aregloAsientos.push(numasiento);
-        $('#'+numasiento).css('background-color','#F5DA81');
+        $('#'+numasiento).css('background-color','#088A08');
     }
 }
 
@@ -315,8 +298,9 @@ function saveventa(){
             Ext.getBody().unmask();
             if(data.data ==='Si'){
                 Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                $("#ModalRegistroVenta").modal("hide");
                 createrow();
-                reload_table();
+                limpiarmodal();
             }else{
                 ExtMsg("Aviso: <br /><br />" + data, Ext.MessageBox.WARNING);
             }
@@ -325,3 +309,11 @@ function saveventa(){
     });
 }
 
+function limpiarmodal(){
+    $("#IDPasajero").val('');
+    $("#FECHA_VIAJE").val('');
+    $("#DESTINO").val('');
+    $("#IDITINERARIO").val('');
+    $("#IdVenta").val('');
+    $("#HORA").val('');
+}

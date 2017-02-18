@@ -33,6 +33,15 @@ class Itinerario_model extends CI_Model{
         return $data;
     }
     
+    public function asientosOcupados($IDITINERARIO){
+        $this->db->select("d.Asiento");
+        $this->db->from('detalle_venta_pasaje as d');
+        $this->db->where('d.IDITINERARIO', $IDITINERARIO);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return $data;
+    }
+    
     public function insertViaje($data){
         try {
             unset($data['IDITINERARIO']);
