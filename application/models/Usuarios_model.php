@@ -62,6 +62,14 @@ class Usuarios_model extends CI_Model{
                     break;
             endswitch;
             $this->db->insert($this->table,$data);
+            $sql = "INSERT INTO `menu`(`TIPCOD`, `MENNOM`, `MENURL`, `MENPERMISO`, `IDUSUARIO`, `MENICONO`) 
+                    SELECT ".$data['TIPCOD']." AS TIPCOD,MENNOM,MENURL,'N', (select DISTINCT(u.IDUSUARIO) as IDUSUARIO
+                    from usuarios u
+                    left join menu m on m.IDUSUARIO = u.IDUSUARIO
+                    where (case WHEN (u.IDUSUARIO =  m.IDUSUARIO) THEN '1' else '0' END) = 0) AS IDUSUARIO,MENICONO 
+                    FROM MENU 
+                    WHERE IDUSUARIO='1'";
+            $this->db->query($sql);
             return 'Si';
         } catch (Exception $e) {
             return 'Excepción capturada: '.  $e->getMessage(). "\n";

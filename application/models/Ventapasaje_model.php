@@ -18,11 +18,10 @@ class Ventapasaje_model extends CI_Model{
                 'Valor_Bruto'=>'50.00','Valor_Igv'=>'9.00','Valor_Total'=>'59.00','IDITINERARIO'=>$data['IDITINERARIO']);
             $dataDettalleVenta = array('destino'=>$data['destino'],'fecha_viaje'=>$data['fecha_viaje'],
                 'hora'=>$data['hora'],'idtipo_servicio'=>'1','nombre'=>'Pasaje','precio'=>'50.00','cantidad'=>'1','IDITINERARIO'=>$data['IDITINERARIO']);
-
+            $dataVentaPasaje['IdVenta'] = $data['IdVenta'];
+            $dataDettalleVenta['IdVenta'] = $data['IdVenta'];
+            $this->db->insert('venta_pasaje',$dataVentaPasaje);
             foreach ($data['aregloAsientos'] as $valor):
-                $dataVentaPasaje['IdVenta'] = $data['IdVenta'];
-                $dataDettalleVenta['IdVenta'] = $data['IdVenta'];
-                $this->db->insert('venta_pasaje',$dataVentaPasaje);
                 $dataDettalleVenta['Asiento'] = $valor;
                 $this->db->insert('detalle_venta_pasaje',$dataDettalleVenta);
                 $data['IdVenta'] = $data['IdVenta'] + 1;

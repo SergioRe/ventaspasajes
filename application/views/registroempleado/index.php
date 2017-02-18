@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">DIRECCIÓN: </label>
                                     <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="DIRECCION" name="DIRECCION" onkeypress="return validarNumeros(event)" />
+                                        <input type="text" class="form-control" id="DIRECCION" name="DIRECCION" />
                                     </div>
                                 </div>
                                 <div class="form-group">

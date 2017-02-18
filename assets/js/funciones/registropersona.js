@@ -337,6 +337,19 @@ function verificarExistencia(numasiento){
 
 function saveventa(){
     var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/saveventa';
+    var IdBus = $("#IdBus").val();
+    if(IdBus === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar una RUTA.');
+        });
+        return false;
+    }
+    if(aregloAsientos.length === 0){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un ASIENTO.');
+        });
+        return false;
+    }
     var IDPasajero = $("#IDPasajero").val();
     var fecha_viaje = $("#FECHA_VIAJE").val();
     var destino = $("#DESTINO").val();
@@ -380,4 +393,5 @@ function cerrarModal(){
     $("#ModalReporte").modal("hide");
     $("#itinera").val();
     $("#IdVenta1").val();
+    aregloAsientos = [];
 }

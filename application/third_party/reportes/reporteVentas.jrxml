@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteVentas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="30"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="IDITINERARIO" class="java.lang.String"/>
 	<parameter name="IdVenta" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT v.*,u.*,p.*, p.Nombres as nompasajero FROM venta_pasaje v
+		<![CDATA[SELECT v.*,u.*,p.*, p.Nombres as nompasajero
+FROM detalle_venta_pasaje dv
+inner join venta_pasaje v on v.IdVenta=dv.IdVenta
 inner join usuarios u on u.IDUSUARIO= v.idUsuario
 inner join pasajero p on p.IDPasajero = v.idPasajero
 where v.IdVenta=$P{IdVenta}]]>
@@ -53,7 +55,7 @@ where v.IdVenta=$P{IdVenta}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["LISTA DE BUSES - 2017"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["REPORTE VENTA - 2017"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="478" y="15" width="77" height="15"/>
@@ -182,7 +184,7 @@ where v.IdVenta=$P{IdVenta}]]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Comprobante}]]></textFieldExpression>
