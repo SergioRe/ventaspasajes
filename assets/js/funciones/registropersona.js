@@ -235,6 +235,10 @@ function reload_table(){
     table.ajax.reload(null,false);
 }
 
+function reload_table1(){
+    table1.ajax.reload(null,false);
+}
+
 function createrow(){
     $('#IDPasajero').val('');
     $('#DNI').val('');
@@ -348,9 +352,14 @@ function saveventa(){
             Ext.getBody().unmask();
             if(data.data ==='Si'){
                 Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                $("#itinera").val(IDITINERARIO);
+                var ventaid = $("#IdVenta").val();
+                $("#IdVenta1").val(ventaid);
                 $("#ModalRegistroVenta").modal("hide");
+                $("#ModalReporte").modal("show");
                 createrow();
                 limpiarmodal();
+                reload_table1();
             }else{
                 ExtMsg("Aviso: <br /><br />" + data, Ext.MessageBox.WARNING);
             }
@@ -364,6 +373,11 @@ function limpiarmodal(){
     $("#FECHA_VIAJE").val('');
     $("#DESTINO").val('');
     $("#IDITINERARIO").val('');
-    $("#IdVenta").val('');
     $("#HORA").val('');
+}
+
+function cerrarModal(){
+    $("#ModalReporte").modal("hide");
+    $("#itinera").val();
+    $("#IdVenta1").val();
 }

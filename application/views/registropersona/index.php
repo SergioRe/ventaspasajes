@@ -226,6 +226,23 @@
         </footer>
     </div>
     <div id="modalventa"></div>
+    <div id="ModalReporte" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 200px;">
+            <div class="modal-header" style="background-color: #f5f5f5;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Generar Reporte</h4>
+            </div>
+            <div class="modal-body">
+                <form action="reporte" method="post" target="_blank">
+                    <input type="hidden" name="itinera" id="itinera" />
+                    <input type="hidden" name="IdVenta1" id="IdVenta1" />
+                    <input type="submit" class="btn btn-default" target="_blank" value="Generra reporte" onclick="cerrarModal();">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

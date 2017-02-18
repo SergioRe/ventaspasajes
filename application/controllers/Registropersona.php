@@ -25,7 +25,7 @@ class Registropersona extends CI_Controller {
             redirect('/inicio/index');
         }
     }
-    
+
     public function json(){
         $this->url_elements = explode('/', $_SERVER['PATH_INFO']);
         $case = $this->url_elements[3];
@@ -65,7 +65,7 @@ class Registropersona extends CI_Controller {
             echo json_encode(array("data" => $data));
         }
     }
-    
+
     public function modalventa(){
         $this->load->helper('url');
         $data = array();
@@ -81,7 +81,7 @@ class Registropersona extends CI_Controller {
             redirect('/inicio/index');
         }
     }
-    
+
     public function dataitinerario(){
         $this->load->helper('url');
         $data = array();
@@ -92,6 +92,14 @@ class Registropersona extends CI_Controller {
         }else{
             redirect('/inicio/index');
         }
+    }
+
+    public function reporte(){
+        $this->load->helper('url');
+        $data = array();
+        $data['IDITINERARIO'] = $_POST['itinera'];
+        $data['IdVenta'] = $_POST['IdVenta1'];
+        $this->load->view('registropersona/reporteventa',$data);
     }
 }
     
