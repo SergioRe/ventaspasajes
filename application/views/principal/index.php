@@ -15,7 +15,7 @@
         .panel-body table tr td { padding-left: 15px }
         .panel-body .table {margin-bottom: 0px; }
     </style>
-    <img class="img-responsive" src="http://placehold.it/1600x300" alt="">
+    <img class="img-responsive" src="<?php echo base_url('assets/img/bu2.png')?>" style="width: 100%;height: 250px;">
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -80,7 +80,7 @@
                     <div class="well">
                         <center><b><p>BIENVENIDO AL SISTEMA</p></b></center>
                     </div>
-                    <img class="img-responsive" src="http://placehold.it/800x500" alt="">
+                    <img class="img-responsive" src="<?php echo base_url('assets/img/bu1.jpg')?>" style="width: 100%;height: 350px;">
                 </div>
             </div>
         </div>

@@ -55,6 +55,9 @@ class Registropersona extends CI_Controller {
                 $_POST['Fechaventa'] = date("d/m/y");
                 $data = $this->ventapasaje->insertVentaPasaje($_POST);
                 break;
+            case 'dataventa':
+                $data = $this->ventapasaje->listaVenta();
+                break;
         endswitch;
         if($flag == '1'){
             echo json_encode($data);

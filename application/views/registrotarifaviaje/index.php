@@ -32,7 +32,7 @@
             cursor: pointer;
         }
     </style>
-    <img class="img-responsive" src="http://placehold.it/1600x300" alt="">
+    <img class="img-responsive" src="<?php echo base_url('assets/img/bu2.png')?>" style="width: 100%;height: 250px;">
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">

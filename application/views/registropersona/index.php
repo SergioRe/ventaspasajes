@@ -27,12 +27,15 @@
         #tablepasajero_filter{
             display: none;
         }
+        #tableventa_filter{
+            display: none;
+        }tableventa
         .selected{
             background-color: #b0bed9;
             cursor: pointer;
         }
     </style>
-    <img class="img-responsive" src="http://placehold.it/1600x300" alt="">
+    <img class="img-responsive" src="<?php echo base_url('assets/img/bu2.png')?>" style="width: 100%;height: 250px;">
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -191,8 +194,22 @@
             <div class="col-md-12"><br/>
                 <div class="well">
                     <center><b><p>LISTADO DE VENTAS</p></b></center>
-                </div>
-                
+                <table id="tableventa" class="table table-bordered display" cellspacing="0" width="100%">
+                    <thead style="background-color: #f5f5f5;">
+                        <tr>
+                            <th class="text-center">CÓDIDO</th>
+                            <th class="text-center">COMPROBANTE</th>
+                            <th class="text-center">FEC. VENTA</th>
+                            <th class="text-center">USUARIO</th>
+                            <th class="text-center">NOM. USUARIO</th>
+                            <th class="text-center">NOM. CLIENTE</th>
+                            <th class="text-center">DNI CLIENTE</th>
+                            <th class="text-center">VALOR PASAJE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
                 
             </div>
         </div>

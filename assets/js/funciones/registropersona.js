@@ -1,7 +1,9 @@
 var table;
+var table1;
 var aregloAsientos = [];
 $(document).ready(function() {
     var url = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/datapasajero';
+    var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/dataventa';
     table = $('#tablepasajero').DataTable({
         "pageLength": 10,
         "ajax": {
@@ -32,6 +34,54 @@ $(document).ready(function() {
                 "sNext":     "Siguiente",
                 "sPrevious": "Anterior"
             }
+        }
+    });
+    
+    table1 = $('#tableventa').DataTable({
+        "pageLength": 10,
+        "ajax": {
+            "url": url1,
+            "type": "POST"
+        },
+        "columns": 
+            [
+                {"data": "IdVenta"},
+                {"data": "Comprobante"},
+                {"data": "Fechaventa"},
+                {"data": "USUARIO"},
+                {"data": "NOMBRES"},
+                {"data": "Nombres"},
+                {"data": "DNI"},
+                {"data": "Valor_Total"}
+            ],
+        "bLengthChange" : false,
+        "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 0,1,2,3,4,5,6,7 ] }
+        ],
+        "language": {
+            "sSearch": "",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Paginas _PAGE_ de _PAGES_, total _MAX_.",
+            "infoEmpty": "Ning&uacute;n dato disponible en esta tabla",
+            "infoFiltered": "(filtrando _MAX_ filas en total)",
+            "sProcessing":   "Procesando...",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "&Uacute;ltimo",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            }
+        }
+    });
+    
+    $('#tableventa tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
         }
     });
     

@@ -32,4 +32,15 @@ class Ventapasaje_model extends CI_Model{
             return 'Excepción capturada: '.  $e->getMessage(). "\n";
         }
     }
+    
+    public function listaVenta(){
+        $this->db->select('v.*,u.*,p.*');
+        $this->db->from('venta_pasaje as v');
+        $this->db->join('usuarios as u','u.IDUSUARIO = v.idUsuario ');
+        $this->db->join('pasajero as p','p.idPasajero = v.idPasajero');
+        $this->db->order_by('v.IdVenta DESC');
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return $data;
+    }
 }
