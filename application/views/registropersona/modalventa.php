@@ -35,6 +35,9 @@
                         <form id="frm1" method="post" name="frm1">
                             <input type="hidden" id="IDBUS" name="IDBUS" />
                             <input type="hidden" id="IDCHOFER" name="IDCHOFER" />
+                            <input type="hidden" id="FECHA_VIAJE" name="FECHA_VIAJE" />
+                            <input type="hidden" id="DESTINO" name="DESTINO" />
+                            <input type="hidden" id="IdVenta" name="IdVenta" value="<?php echo $IdVenta;?>"/>
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">

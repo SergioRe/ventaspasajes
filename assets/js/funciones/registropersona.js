@@ -262,6 +262,8 @@ function datositinerario(IDITINERARIO){
                 $("#HORA").val(data[k].HORA);
                 $("#HORAFIN").val(data[k].HORAFIN);
                 $("#PRECIO").val(data[k].PRECIO);
+                $("#FECHA_VIAJE").val(data[k].FECHA_VIAJE);
+                $("#DESTINO").val(data[k].DESTINO);
             });
         },
         timeout:40000
@@ -277,7 +279,6 @@ function seleccionarasiento(numasiento){
         aregloAsientos.push(numasiento);
         $('#'+numasiento).css('background-color','#F5DA81');
     }
-    alert(aregloAsientos);
 }
 
 function remove(arr, item) {
@@ -298,6 +299,29 @@ function verificarExistencia(numasiento){
 }
 
 function saveventa(){
-    alert('Estamos en proceso');
+    var url1 = base_url + '/' + pathArray[1] + '/index.php/registropersona/json/saveventa';
+    var IDPasajero = $("#IDPasajero").val();
+    var fecha_viaje = $("#FECHA_VIAJE").val();
+    var destino = $("#DESTINO").val();
+    var IDITINERARIO = $("#IDITINERARIO").val();
+    var IdVenta = $("#IdVenta").val();
+    var hora = $("#HORA").val();
+    $.ajax({
+        url : url1,
+        type: "POST",
+        dataType: "JSON",
+        data: {aregloAsientos:aregloAsientos,idPasajero:IDPasajero,fecha_viaje:fecha_viaje,destino:destino,IDITINERARIO:IDITINERARIO,IdVenta:IdVenta,hora:hora},
+        success: function(data){
+            Ext.getBody().unmask();
+            if(data.data ==='Si'){
+                Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                createrow();
+                reload_table();
+            }else{
+                ExtMsg("Aviso: <br /><br />" + data, Ext.MessageBox.WARNING);
+            }
+        },
+        timeout:40000
+    });
 }
 
