@@ -45,14 +45,21 @@ $(document).ready(function() {
         },
         "columns": 
             [
-                {"data": "IdVenta"},
+                {"data": "IdVenta", "class" :"text-center"},
                 {"data": "Comprobante"},
-                {"data": "Fechaventa"},
+                {"data": "Fechaventa", "class" :"text-center"},
                 {"data": "USUARIO"},
                 {"data": "NOMBRES"},
                 {"data": "Nombres"},
-                {"data": "DNI"},
-                {"data": "Valor_Total"}
+                {"data": "DNI", "class" :"text-center"},
+                {"data": "Valor_Total", "class" :"text-center"},
+                {"data" : null, "mRender" : function(data, type, full){
+                    return '<form style="cursor:pointer;" action="reportes" method="post" target="_blank">\n\
+                        <input type="hidden" name="itinera1" id="itinera1" value=\'' + full.IDITINERARIO+ '\' />\n\
+                        <input type="hidden" name="IdVenta11" id="IdVenta11" value=\'' + full.IdVenta+ '\' />\n\
+                        <center><button type="submit" class="btn btn-default btn-xs" target="_blank"><span class="glyphicon glyphicon-print"></span> PDF</button>\n\
+                        </center></form>';
+                }}
             ],
         "bLengthChange" : false,
         "aoColumnDefs": [
@@ -100,10 +107,19 @@ $(document).ready(function() {
     $('input.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).parents('div').attr('data-column') );
     });
+    
+    $('input.column_filterr').on( 'keyup click', function () {
+        filterColumn1( $(this).parents('div').attr('data-column') );
+    });
 });
 
 function filterColumn ( i ) {
     table.column( i ).search(
+    $('#col'+i+'_filter').val()).draw();
+}
+
+function filterColumn1 ( i ) {
+    table1.column( i ).search(
     $('#col'+i+'_filter').val()).draw();
 }
 
@@ -347,6 +363,12 @@ function saveventa(){
     if(aregloAsientos.length === 0){
         Ext.onReady(function() {
             Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un ASIENTO.');
+        });
+        return false;
+    }
+    if(aregloAsientos.length > 1){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Solo puede seleccionar un asiento un ASIENTO.');
         });
         return false;
     }

@@ -52,7 +52,7 @@ class Registropersona extends CI_Controller {
             case 'saveventa':
                 $_POST['idUsuario'] = $session_data['IDUSUARIO'];
                 date_default_timezone_set('America/Lima');
-                $_POST['Fechaventa'] = date("d/m/y");
+                $_POST['Fechaventa'] = date("d/m/Y");
                 $data = $this->ventapasaje->insertVentaPasaje($_POST);
                 break;
             case 'dataventa':
@@ -99,6 +99,14 @@ class Registropersona extends CI_Controller {
         $data = array();
         $data['IDITINERARIO'] = $_POST['itinera'];
         $data['IdVenta'] = $_POST['IdVenta1'];
+        $this->load->view('registropersona/reporteventa',$data);
+    }
+    
+    public function reportes(){
+        $this->load->helper('url');
+        $data = array();
+        $data['IDITINERARIO'] = $_POST['itinera1'];
+        $data['IdVenta'] = $_POST['IdVenta11'];
         $this->load->view('registropersona/reporteventa',$data);
     }
 }

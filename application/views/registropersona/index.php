@@ -194,24 +194,36 @@
             <div class="col-md-12"><br/>
                 <div class="well">
                     <center><b><p>LISTADO DE VENTAS</p></b></center>
-                <table id="tableventa" class="table table-bordered display" cellspacing="0" width="100%">
-                    <thead style="background-color: #f5f5f5;">
-                        <tr>
-                            <th class="text-center">CÓDIDO</th>
-                            <th class="text-center">COMPROBANTE</th>
-                            <th class="text-center">FEC. VENTA</th>
-                            <th class="text-center">USUARIO</th>
-                            <th class="text-center">NOM. USUARIO</th>
-                            <th class="text-center">NOM. CLIENTE</th>
-                            <th class="text-center">DNI CLIENTE</th>
-                            <th class="text-center">VALOR PASAJE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                
-            </div>
+                    <form class="form-horizontal izquierda" id="frmventas" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">DNI: </label>
+                            <div class="col-sm-3" id="filter_col7" data-column="6">
+                                <input type="text" class="column_filterr form-control" id="col6_filter" placeholder="INGRESE EL DNI">
+                            </div>
+                            <label class="control-label col-sm-2 letra1" for="pwd">FECHA DE VENTA: </label>
+                            <div class="col-sm-3" id="filter_col3" data-column="2">          
+                                <input type="text" class="column_filterr form-control letra1" id="col2_filter" placeholder="INGRESE FECHA VENTA">
+                            </div>
+                        </div>
+                    </form>
+                    <table id="tableventa" class="table table-bordered display" cellspacing="0" width="100%">
+                        <thead style="background-color: #f5f5f5;">
+                            <tr>
+                                <th class="text-center">CÓDIDO</th>
+                                <th class="text-center">COMPROBANTE</th>
+                                <th class="text-center">FEC. VENTA</th>
+                                <th class="text-center">USUARIO</th>
+                                <th class="text-center">NOM. USUARIO</th>
+                                <th class="text-center">NOM. CLIENTE</th>
+                                <th class="text-center">DNI CLIENTE</th>
+                                <th class="text-center">VALOR PASAJE</th>
+                                <th class="text-center">IMPRIMIR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
     <div class="container">

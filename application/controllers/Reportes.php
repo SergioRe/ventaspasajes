@@ -35,5 +35,15 @@ class Reportes extends CI_Controller {
             redirect('/inicio/index');
         }
     }
+    
+    public function reporteventas(){
+        $this->load->helper('url');
+        $data = array();
+        if($this->session->userdata('logged_in')){
+            $this->load->view('reportes/reporteventas',$data);
+        }else{
+            redirect('/inicio/index');
+        }
+    }
 }
     

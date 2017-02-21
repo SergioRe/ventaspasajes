@@ -112,16 +112,17 @@
                                             <i class="glyphicon glyphicon-print"></i> Imprimir PDF</a>
                                     </center></th>
                                 </tr>
+                                <tr>
+                                    <th>REPORTE DE VENTAS DEL DÍA</th>
+                                    <th><center>
+                                        <a class="btn btn-sm btn-default btn-sm" target="_blank" href="reporteventas">
+                                            <i class="glyphicon glyphicon-print"></i> Imprimir PDF</a>
+                                    </center></th>
+                                </tr>
                             </thead>
                         </table>
                         </div>
-                    </div><br/>
-                    <button type="button" class="btn btn-success btn-sm" id="btn-create" onclick="createrow();">
-                        <span class="glyphicon glyphicon-plus-sign"></span> <b>Boton Nuevo</b> 
-                    </button>
-                    <button type="submit" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
-                        <span class="glyphicon glyphicon-floppy-disk"></span> <b>Boton Guardar</b>
-                    </button><br/><br/>
+                    </div><br/><br/>
                 </div>
             </div>
         </div>
