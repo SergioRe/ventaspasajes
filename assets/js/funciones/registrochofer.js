@@ -140,3 +140,43 @@ function createrow(){
     $('#Direccion').val('');
     $('#N_Brevete').val('');
 }
+
+function deletechofer(){
+    var url2 = base_url + '/' + pathArray[1] + '/index.php/registrochofer/json/deletechofer';
+    var IdChofer = $('#IdChofer').val();
+    if(IdChofer === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un CHOFER.');
+        });
+        return false;
+    }
+    Ext.Msg.confirm("!ATENCIÓN¡", "Esta segurto de eliminar al chofer.", function(btnText){
+        if(btnText === "yes"){
+            $.ajax({
+                url : url2,
+                type: "POST",
+                dataType: "JSON",
+                data: {IdChofer:IdChofer},
+                beforeSend:cargando,
+                success: function(result){
+                    Ext.getBody().unmask();
+                    switch (result.data){
+                        case 'Si':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                            createrow();
+                            reload_table();
+                            break;
+                        case 'ExisteChofer':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'No ce puede eliminar al chofer.');
+                            break;
+                        default:
+                            ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
+                            break;
+                    }
+                },
+                timeout:40000,
+                error: problemas
+            });
+        }
+    }, this);
+}

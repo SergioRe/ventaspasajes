@@ -6,7 +6,8 @@ class Registroviaje extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Usuarios_model','usuarios');
-        $this->load->model(array('Bus_model'=>'bus','Usuarios_model'=>'usuarios','Menu_model'=>'menu','Itinerario_model'=>'itinerario','Chofer_model'=>'chofer'));
+        $this->load->model(array('Bus_model'=>'bus','Usuarios_model'=>'usuarios','Menu_model'=>'menu',
+            'Itinerario_model'=>'itinerario','Chofer_model'=>'chofer','Ventapasaje_model'=>'ventapasaje'));
     } 
 
     public function index(){
@@ -20,6 +21,7 @@ class Registroviaje extends CI_Controller {
             $data['CARGO'] = $session_data['CARGO'];
             $data['NOMCOMP'] = $session_data['NOMBRES'].' '.$session_data['APELLIDOS'];
             $data['MENU'] = $this->menu->menuPorUsuario($session_data['IDUSUARIO']);
+            $data['listachofer'] = $this->chofer->listaChofer();
             $data['listabus'] = $this->bus->listaBus();
             $this->load->view('registroviaje/index',$data);
         }else{
@@ -44,6 +46,14 @@ class Registroviaje extends CI_Controller {
                 break;
             case 'update':
                 $data = $this->itinerario->updateViaje($_POST);
+                break;
+            case 'deleteviaje':
+                $existe = $this->ventapasaje->verificarExistenciaViaje($_POST['IDITINERARIO']);
+                if($existe == 'Existe'){
+                    $data = 'ExisteViaje';
+                }else{
+                    $data = $this->itinerario->deleteViaje($_POST);
+                }
                 break;
         endswitch;
         if($flag == '1'){

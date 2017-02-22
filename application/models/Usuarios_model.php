@@ -114,4 +114,14 @@ class Usuarios_model extends CI_Model{
         $decrypted = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($key), base64_decode($cadena), MCRYPT_MODE_CBC, md5(md5($key))), "\0");
         return $decrypted;  //Devuelve el string desencriptado
     }
+    
+    public function deleteUsuario($data){
+        try {
+            $this->db->where('IDUSUARIO', $data['IDUSUARIO']);
+            $this->db->delete($this->table); 
+            return 'Si';
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+    }
 }

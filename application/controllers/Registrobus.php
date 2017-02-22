@@ -6,7 +6,7 @@ class Registrobus extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Usuarios_model','usuarios');
-        $this->load->model(array('Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus','Chofer_model'=>'chofer'));
+        $this->load->model(array('Itinerario_model'=>'itinerario','Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus','Chofer_model'=>'chofer'));
     } 
 
     public function index(){
@@ -44,6 +44,14 @@ class Registrobus extends CI_Controller {
                 break;
             case 'update':
                 $data = $this->bus->updateBus($_POST);
+                break;
+            case 'deletebus':
+                $existe = $this->itinerario->verificarExistenciaBus($_POST['IdBus']);
+                if($existe == 'Existe'){
+                    $data = 'ExisteBus';
+                }else{
+                    $data = $this->bus->deleteBus($_POST);
+                }
                 break;
         endswitch;
         if($flag == '1'){

@@ -45,5 +45,17 @@ class Reportes extends CI_Controller {
             redirect('/inicio/index');
         }
     }
+    
+    public function reporteventasporfecha(){
+        $this->load->helper('url');
+        $data = array();
+        if($this->session->userdata('logged_in')){
+            $data['FECHAINI'] = $_POST['FECHAINI'];
+            $data['FECHAFIN'] = $_POST['FECHAFIN'];
+            $this->load->view('reportes/reporteventasporfecha',$data);
+        }else{
+            redirect('/inicio/index');
+        }
+    }
 }
     

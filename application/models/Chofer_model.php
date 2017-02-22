@@ -49,4 +49,14 @@ class Chofer_model extends CI_Model{
             return 'Excepción capturada: '.  $e->getMessage(). "\n";
         }
     }
+    
+    public function deleteChofer($IdChofer){
+        try {
+            $this->db->where('IdChofer', $IdChofer);
+            $this->db->delete($this->table); 
+            return 'Si';
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+    }
 }

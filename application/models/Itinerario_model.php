@@ -46,6 +46,8 @@ class Itinerario_model extends CI_Model{
         try {
             unset($data['IDITINERARIO']);
             unset($data['NOMVIAJE']);
+            $data['ASIENTO'] = '40';
+            $data['IDTIPO_SERVICIO'] = '1';
             $this->db->insert($this->table,$data);
             return 'Si';
         } catch (Exception $e) {
@@ -59,6 +61,34 @@ class Itinerario_model extends CI_Model{
             unset($data['IDITINERARIO']);
             unset($data['NOMVIAJE']);
             $this->db->update($this->table,$data);
+            return 'Si';
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+    }
+
+    public function verificarExistenciaBus($IDBUS){
+        $this->db->select("i.*");
+        $this->db->from('itinerario as i');
+        $this->db->where('i.IDBUS', $IDBUS);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return (count($data)>0?'Existe':'NoExiste');
+    }
+    
+    public function verificarExistenciaChofer($IDCHOFER){
+        $this->db->select("i.*");
+        $this->db->from('itinerario as i');
+        $this->db->where('i.IDCHOFER', $IDCHOFER);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return (count($data)>0?'Existe':'NoExiste');
+    }
+    
+    public function deleteViaje($data){
+        try {
+            $this->db->where('IDITINERARIO', $data['IDITINERARIO']);
+            $this->db->delete($this->table); 
             return 'Si';
         } catch (Exception $e) {
             return 'Excepción capturada: '.  $e->getMessage(). "\n";

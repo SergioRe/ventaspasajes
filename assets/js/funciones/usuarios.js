@@ -161,3 +161,43 @@ function createrow(){
     $('#USUARIO').val('');
     $('#CONTRASENA').val('');
 }
+
+function deleteusuario(){
+    var url2 = base_url + '/' + pathArray[1] + '/index.php/registroempleado/json/deleteusuario';
+    var IDUSUARIO = $('#IDUSUARIO').val();
+    if(IDUSUARIO === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un USUARIO.');
+        });
+        return false;
+    }
+    Ext.Msg.confirm("!ATENCIÓN¡", "Esta segurto de eliminar al pasajero.", function(btnText){
+        if(btnText === "yes"){
+            $.ajax({
+                url : url2,
+                type: "POST",
+                dataType: "JSON",
+                data: {IDUSUARIO:IDUSUARIO},
+                beforeSend:cargando,
+                success: function(result){
+                    Ext.getBody().unmask();
+                    switch (result.data){
+                        case 'Si':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                            createrow();
+                            reload_table();
+                            break;
+                        case 'ExisteUsuario':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'No ce puede eliminar al usuario.');
+                            break;
+                        default:
+                            ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
+                            break;
+                    }
+                },
+                timeout:40000,
+                error: problemas
+            });
+        }
+    }, this);
+}

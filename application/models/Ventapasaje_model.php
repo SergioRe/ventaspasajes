@@ -42,4 +42,22 @@ class Ventapasaje_model extends CI_Model{
         $data = $query->result_array(); 
         return $data;
     }
+    
+    public function verificarExistenciaViaje($IDITINERARIO){
+        $this->db->select('v.*');
+        $this->db->from('venta_pasaje as v');
+        $this->db->where('v.IDITINERARIO', $IDITINERARIO);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return (count($data)>0?'Existe':'NoExiste');
+    }
+    
+    public function verificarExistenciaUsuarios($IDUSUARIO){
+        $this->db->select('v.*');
+        $this->db->from('venta_pasaje as v');
+        $this->db->where('v.idUsuario', $IDUSUARIO);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return (count($data)>0?'Existe':'NoExiste');
+    }
 }

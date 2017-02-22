@@ -134,6 +134,21 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">CHOFER: </label>
+                                    <div class="col-lg-7">
+                                        <select id="IDCHOFER" name="IDCHOFER" class="form-control">
+                                            <option value="">Seleecione</option>
+                                            <?php
+                                            foreach ($listachofer as $value):
+                                            ?>
+                                            <option value="<?php echo $value['IdChofer'];?>"><?php echo $value['Chofer'];?></option>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <img class="img-responsive" src="<?php echo base_url('assets/img/bu3.jpg')?>" style="width: 100%;height: 180px;">
@@ -145,6 +160,9 @@
                     </button>
                     <button type="submit" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
                         <span class="glyphicon glyphicon-floppy-disk"></span> <b>Boton Guardar</b>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btn-delete" onclick="deleteviaje();">
+                        <span class="glyphicon glyphicon glyphicon-minus"></span> <b>Boton Eliminar</b>
                     </button><br/><br/>
                     <div class="well">
                         <center><b><p>LISTADO VIAJES</p></b></center>

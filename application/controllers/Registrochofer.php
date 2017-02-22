@@ -6,7 +6,8 @@ class Registrochofer extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Usuarios_model','usuarios');
-        $this->load->model(array('Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus','Chofer_model'=>'chofer'));
+        $this->load->model(array('Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus',
+            'Chofer_model'=>'chofer','Itinerario_model'=>'itinerario'));
     } 
 
     public function index(){
@@ -44,6 +45,15 @@ class Registrochofer extends CI_Controller {
                 break;
             case 'update':
                 $data = $this->chofer->updateChofer($_POST);
+                break;
+            case 'deletechofer':
+                $existe = $this->bus->verificarExistenciaChoferBus($_POST['IdChofer']);
+                $existe1 = $this->itinerario->verificarExistenciaChofer($_POST['IdChofer']);
+                if($existe == 'Existe' || $existe1 == 'Existe'){
+                    $data = 'ExisteChofer';
+                }else{
+                    $data = $this->chofer->deleteChofer($_POST['IdChofer']);
+                }
                 break;
         endswitch;
         if($flag == '1'){

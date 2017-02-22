@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">CANTIDAD ASIENTOS: </label>
                                     <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="N_Asiento" maxlength="3" name="N_Asiento" onkeypress="return validarNumeros(event)" />
+                                        <input type="text" class="form-control" disabled="" value="40" id="N_Asiento" maxlength="3" name="N_Asiento" onkeypress="return validarNumeros(event)" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -143,8 +143,11 @@
                     <button type="button" class="btn btn-success btn-sm" id="btn-create" onclick="createrow();">
                         <span class="glyphicon glyphicon-plus-sign"></span> <b>Boton Nuevo</b> 
                     </button>
-                    <button type="submit" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
                         <span class="glyphicon glyphicon-floppy-disk"></span> <b>Boton Guardar</b>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btn-delete" onclick="deletebus();">
+                        <span class="glyphicon glyphicon glyphicon-minus"></span> <b>Boton Eliminar</b>
                     </button><br/><br/>
                     <div class="well">
                         <center><b><p>LISTADO BUSES</p></b></center>

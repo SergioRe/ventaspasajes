@@ -153,6 +153,9 @@
                     </button>
                     <button type="submit" class="btn btn-primary btn-sm" id="btn-save" onclick="saverow();">
                         <span class="glyphicon glyphicon-floppy-disk"></span> <b>Boton Guardar</b>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btn-delete" onclick="deleteusuario();">
+                        <span class="glyphicon glyphicon glyphicon-minus"></span> <b>Boton Eliminar</b>
                     </button><br/><br/>
                     <div class="well">
                         <center><b><p>LISTADO DE USUARIOS</p></b></center>

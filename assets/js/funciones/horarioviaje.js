@@ -57,6 +57,14 @@ $(document).ready(function() {
     $('input.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).parents('div').attr('data-column') );
     });
+    
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        todayHighlight: true,
+        orientation: "top auto",
+        todayBtn: true
+    });
 });
 
 function filterColumn ( i ) {

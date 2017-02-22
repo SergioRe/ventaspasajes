@@ -71,6 +71,7 @@ function saverow(){
     var ORIGEN = $('#ORIGEN').val();
     var DESTINO = $('#DESTINO').val();
     var IdBus = $('#IdBus').val();
+    var IDCHOFER = $('#IDCHOFER').val();
     if(NOMVIAJE === ''){
         Ext.onReady(function() {
             Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el NOMBRE VIAJE.');
@@ -91,7 +92,13 @@ function saverow(){
     }
     if(IdBus === ''){
         Ext.onReady(function() {
-            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el SELECCIONAR EL BUS.');
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un BUS.');
+        });
+        return false;
+    }
+    if(IDCHOFER === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un CHOFER.');
         });
         return false;
     }
@@ -151,4 +158,44 @@ function createrow(){
     $('#ORIGEN').val('');
     $('#DESTINO').val('');
     $('#IdBus').val('');
+}
+
+function deleteviaje(){
+    var url2 = base_url + '/' + pathArray[1] + '/index.php/registroviaje/json/deleteviaje';
+    var IDITINERARIO = $('#IDITINERARIO').val();
+    if(IDITINERARIO === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un VIAJE.');
+        });
+        return false;
+    }
+    Ext.Msg.confirm("!ATENCIÓN¡", "Esta segurto de eliminar al bus.", function(btnText){
+        if(btnText === "yes"){
+            $.ajax({
+                url : url2,
+                type: "POST",
+                dataType: "JSON",
+                data: {IDITINERARIO:IDITINERARIO},
+                beforeSend:cargando,
+                success: function(result){
+                    Ext.getBody().unmask();
+                    switch (result.data){
+                        case 'Si':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                            createrow();
+                            reload_table();
+                            break;
+                        case 'ExisteViaje':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'No ce puede eliminar al viaje.');
+                            break;
+                        default:
+                            ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
+                            break;
+                    }
+                },
+                timeout:40000,
+                error: problemas
+            });
+        }
+    }, this);
 }

@@ -6,7 +6,8 @@ class Registroempleado extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Usuarios_model','usuarios');
-        $this->load->model(array('Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus','Chofer_model'=>'chofer'));
+        $this->load->model(array('Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus',
+            'Chofer_model'=>'chofer','Ventapasaje_model'=>'ventapasaje','Pasajero_model'=>'pasajero'));
     } 
 
     public function index(){
@@ -44,6 +45,14 @@ class Registroempleado extends CI_Controller {
                 break;
             case 'update':
                 $data = $this->usuarios->updateUsuario($_POST);
+                break;
+            case 'deleteusuario':
+                $existe = $this->ventapasaje->verificarExistenciaUsuarios($_POST['IDUSUARIO']);
+                if($existe == 'Existe'){
+                    $data = 'ExisteUsuario';
+                }else{
+                    $data = $this->usuarios->deleteUsuario($_POST);
+                }
                 break;
         endswitch;
         if($flag == '1'){

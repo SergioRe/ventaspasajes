@@ -7,6 +7,7 @@
     <link href="<?php echo base_url('assets/estilotbl/media/css/dataTables.bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/ext-4.2.0/examples/shared/example.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/ext-4.2.0/examples/writer/writer.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
 
     <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
@@ -16,6 +17,7 @@
     <script src="<?php echo base_url('assets/estilotbl/media/js/dataTables.bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/ext-4.2.0/examples/shared/include-ext.js')?>"></script>
     <script src="<?php echo base_url('assets/ext-4.2.0/examples/shared/examples.js')?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 </head>
 <body style="padding: 0px;padding-top: 0px;">
     <style type="text/css">
@@ -119,6 +121,13 @@
                                             <i class="glyphicon glyphicon-print"></i> Imprimir PDF</a>
                                     </center></th>
                                 </tr>
+                                <tr>
+                                    <th>REPORTE DE VENTAS POR FECHAS</th>
+                                    <th><center>
+                                        <a class="btn btn-sm btn-default btn-sm" onclick="reporteVentasPorFechas();">
+                                            <i class="glyphicon glyphicon-print"></i> Imprimir PDF</a>
+                                    </center></th>
+                                </tr>
                             </thead>
                         </table>
                         </div>
@@ -137,6 +146,23 @@
                 </div>
             </div>
         </footer>
+    </div>
+    <div id="ModalRangoFechas" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 400px;">
+                <div class="modal-header" style="background-color: #f5f5f5;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Generar Reporte</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="reporteventasporfecha" method="post" target="_blank" onsubmit="return validarFechas();">
+                        <input type="text" class="form-control datepicker" id="FECHAINI" name="FECHAINI" placeholder="Ingrese la Fecha Inicio" /><br/>
+                        <input type="text" class="form-control datepicker" id="FECHAFIN" name="FECHAFIN" placeholder="Ingrese la Fecha Fin" /><br/>
+                        <input type="submit" class="btn btn-default" target="_blank" value="Generra reporte" onclick="cerrarModal();">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

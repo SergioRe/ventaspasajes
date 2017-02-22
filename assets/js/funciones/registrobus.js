@@ -147,6 +147,46 @@ function createrow(){
     $('#IdBus').val('');
     $('#NomBus').val('');
     $('#Placa').val('');
-    $('#N_Asiento').val('');
+    $('#N_Asiento').val('40');
     $('#IdChofer').val('');
+}
+
+function deletebus(){
+    var url2 = base_url + '/' + pathArray[1] + '/index.php/registrobus/json/deletebus';
+    var IdBus = $('#IdBus').val();
+    if(IdBus === ''){
+        Ext.onReady(function() {
+            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe seleccionar un BUS.');
+        });
+        return false;
+    }
+    Ext.Msg.confirm("!ATENCIÓN¡", "Esta segurto de eliminar al bus.", function(btnText){
+        if(btnText === "yes"){
+            $.ajax({
+                url : url2,
+                type: "POST",
+                dataType: "JSON",
+                data: {IdBus:IdBus},
+                beforeSend:cargando,
+                success: function(result){
+                    Ext.getBody().unmask();
+                    switch (result.data){
+                        case 'Si':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                            createrow();
+                            reload_table();
+                            break;
+                        case 'ExisteBus':
+                            Ext.Msg.alert('!ATENCIÓN¡', 'No ce puede eliminar al bus.');
+                            break;
+                        default:
+                            ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
+                            break;
+                    }
+                },
+                timeout:40000,
+                error: problemas
+            });
+        }
+    }, this);
 }

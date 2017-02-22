@@ -34,6 +34,7 @@ class Bus_model extends CI_Model{
     public function insertBus($data){
         try {
             unset($data['IdBus']);
+            $data['N_Asiento'] = '40';
             $this->db->insert($this->table,$data);
             return 'Si';
         } catch (Exception $e) {
@@ -50,5 +51,24 @@ class Bus_model extends CI_Model{
         } catch (Exception $e) {
             return 'Excepción capturada: '.  $e->getMessage(). "\n";
         }
+    }
+    
+    public function deleteBus($data){
+        try {
+            $this->db->where('IdBus', $data['IdBus']);
+            $this->db->delete($this->table); 
+            return 'Si';
+        } catch (Exception $e) {
+            return 'Excepción capturada: '.  $e->getMessage(). "\n";
+        }
+    }
+    
+    public function verificarExistenciaChoferBus($IdChofer){
+        $this->db->select('b.*');
+        $this->db->from('bus as b');
+        $this->db->where('b.IdChofer', $IdChofer);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return (count($data)>0?'Existe':'NoExiste');
     }
 }
