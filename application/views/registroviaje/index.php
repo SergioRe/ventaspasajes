@@ -7,7 +7,10 @@
     <link href="<?php echo base_url('assets/estilotbl/media/css/dataTables.bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/ext-4.2.0/examples/shared/example.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/ext-4.2.0/examples/writer/writer.css')?>" rel="stylesheet">
-
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/jquery.ptTimeSelect.css')?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/redmond/jquery-ui.css" />
+    
     <script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/js/funciones/funciones.js')?>"></script>
@@ -16,6 +19,10 @@
     <script src="<?php echo base_url('assets/estilotbl/media/js/dataTables.bootstrap.min.js')?>"></script>
     <script src="<?php echo base_url('assets/ext-4.2.0/examples/shared/include-ext.js')?>"></script>
     <script src="<?php echo base_url('assets/ext-4.2.0/examples/shared/examples.js')?>"></script>
+    <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.ptTimeSelect.js')?>"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--    <script src="<?php echo base_url('assets/js/jquery-ui.js')?>"></script>-->
 </head>
 <body style="padding: 0px;padding-top: 0px;">
     <style type="text/css">
@@ -104,7 +111,7 @@
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">NOMBRE VIAJE: </label>
                                     <div class="col-lg-7">
-                                        <input type="text" class="form-control" id="NOMVIAJE" name="NOMVIAJE" />
+                                        <input type="text" class="form-control" id="NOMVIAJE" name="NOMVIAJE" disabled="" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -117,6 +124,36 @@
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">DESTINO: </label>
                                     <div class="col-lg-7">
                                         <input type="text" class="form-control" id="DESTINO" name="DESTINO" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">HORA SALIDA: </label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="HORA" name="HORA" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">HORA LLEGADA: </label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="HORAFIN" name="HORAFIN" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">PRECIO: </label>
+                                    <div class="col-lg-7">
+                                        <input type="number" class="form-control" id="PRECIO" name="PRECIO" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">ASIENTO: </label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="ASIENTO" name="ASIENTO" value="40" disabled="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">FECHA VIAJE: </label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="FECHA_VIAJE" name="FECHA_VIAJE"  />
                                     </div>
                                 </div>
                                 <div class="form-group">

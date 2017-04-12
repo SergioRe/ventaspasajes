@@ -378,11 +378,13 @@ function saveventa(){
     var IDITINERARIO = $("#IDITINERARIO").val();
     var IdVenta = $("#IdVenta").val();
     var hora = $("#HORA").val();
+    var ORIGEN = $("#ORIGEN").val();
+    var HORAFIN = $("#HORAFIN").val();
     $.ajax({
         url : url1,
         type: "POST",
         dataType: "JSON",
-        data: {aregloAsientos:aregloAsientos,idPasajero:IDPasajero,fecha_viaje:fecha_viaje,destino:destino,IDITINERARIO:IDITINERARIO,IdVenta:IdVenta,hora:hora},
+        data: {aregloAsientos:aregloAsientos,idPasajero:IDPasajero,fecha_viaje:fecha_viaje,destino:destino,IDITINERARIO:IDITINERARIO,IdVenta:IdVenta,hora:hora,ORIGEN:ORIGEN,HORAFIN:HORAFIN},
         success: function(data){
             Ext.getBody().unmask();
             if(data.data ==='Si'){

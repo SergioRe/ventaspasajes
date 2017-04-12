@@ -44,11 +44,22 @@ class Itinerario_model extends CI_Model{
     
     public function insertViaje($data){
         try {
+            date_default_timezone_set('America/Lima');
             unset($data['IDITINERARIO']);
             unset($data['NOMVIAJE']);
             $data['ASIENTO'] = '40';
             $data['IDTIPO_SERVICIO'] = '1';
+            $fecha = explode('-', $data['FECHA_VIAJE']);
+            $fechaFormatoBD = $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
+            $data['FECHA_VIAJE'] = $fechaFormatoBD;
             $this->db->insert($this->table,$data);
+            $dias= 9;
+            for($i=1;$i<=$dias;$i++){
+                $fecha = date_create($data['FECHA_VIAJE']);
+                date_add($fecha, date_interval_create_from_date_string('1 days'));
+                $data['FECHA_VIAJE'] = date_format($fecha, 'Y-m-d');
+                $this->db->insert($this->table,$data);
+            }
             return 'Si';
         } catch (Exception $e) {
             return 'Excepción capturada: '.  $e->getMessage(). "\n";

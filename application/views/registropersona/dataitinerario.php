@@ -3,6 +3,8 @@
     <input type="hidden" id="IDCHOFER" name="IDCHOFER" value="<?php echo $itinerario[0]['IDCHOFER'];?>" />
     <input type="hidden" id="FECHA_VIAJE" name="FECHA_VIAJE" value="<?php echo $itinerario[0]['FECHA_VIAJE'];?>" />
     <input type="hidden" id="DESTINO" name="DESTINO" value="<?php echo $itinerario[0]['DESTINO'];?>" />
+    <input type="hidden" id="ORIGEN" name="ORIGEN" value="<?php echo $itinerario[0]['ORIGEN'];?>" />
+    <input type="hidden" id="HORAFIN" name="HORAFIN" value="<?php echo $itinerario[0]['HORAFIN'];?>" />
     <div class="row">
         <div class="col-lg-4">
             <div class="form-group">

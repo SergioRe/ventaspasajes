@@ -14,7 +14,7 @@
     $currentDateTime=date('m/d/Y H:i:s');
     $hora = date('h:i A', strtotime($currentDateTime));
     $PHPJasperXML->arrayParameter=array("parameter1"=>1,"FECHA"=>$fecha,"HORA"=>$hora,"IDITINERARIO"=>$IDITINERARIO,"IdVenta"=>$IdVenta);
-    $url = APPPATH."third_party/reportes/reporteVentas.jrxml";
+    $url = APPPATH."third_party/reportes/boleta.jrxml";
     $PHPJasperXML->load_xml_file($url);
     $PHPJasperXML->transferDBtoArray($server,$user,$pass,$db);
     $PHPJasperXML->outpage("I");

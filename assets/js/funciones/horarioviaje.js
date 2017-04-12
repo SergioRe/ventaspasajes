@@ -60,7 +60,7 @@ $(document).ready(function() {
     
     $('.datepicker').datepicker({
         autoclose: true,
-        format: "dd/mm/yyyy",
+        format: "yyyy-mm-dd",
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true

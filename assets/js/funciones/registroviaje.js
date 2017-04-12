@@ -1,5 +1,15 @@
 var table;
 $(document).ready(function() {
+    $('#HORA').ptTimeSelect({
+        hoursLabel:     'Hora',
+        minutesLabel:   'Minutos',
+        setButtonLabel: 'Ok'
+    });
+    $('#HORAFIN').ptTimeSelect({
+        hoursLabel:     'Hora',
+        minutesLabel:   'Minutos',
+        setButtonLabel: 'Ok'
+    });
     var url = base_url + '/' + pathArray[1] + '/index.php/registroviaje/json/dataviaje';
     table = $('#tableviaje').DataTable({
         "pageLength": 10,
@@ -56,6 +66,11 @@ $(document).ready(function() {
     $('input.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).parents('div').attr('data-column') );
     });
+    
+    $( "#FECHA_VIAJE" ).datepicker({
+        minDate: 0,
+        dateFormat:"dd-mm-yy"
+    });
 });
 
 function filterColumn ( i ) {
@@ -72,12 +87,6 @@ function saverow(){
     var DESTINO = $('#DESTINO').val();
     var IdBus = $('#IdBus').val();
     var IDCHOFER = $('#IDCHOFER').val();
-    if(NOMVIAJE === ''){
-        Ext.onReady(function() {
-            Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el NOMBRE VIAJE.');
-        });
-        return false;
-    }
     if(ORIGEN === ''){
         Ext.onReady(function() {
             Ext.MessageBox.alert('!ATENCIÓN¡', 'Debe ingresar el ORIGEN.');
@@ -142,6 +151,11 @@ function editarviaje(IDITINERARIO){
                 $("#ORIGEN").val(data[k].ORIGEN);
                 $("#DESTINO").val(data[k].DESTINO);
                 $("#IdBus").val(data[k].IdBus);
+                $("#HORA").val(data[k].HORA);
+                $("#HORAFIN").val(data[k].HORAFIN);
+                $("#PRECIO").val(data[k].PRECIO);
+                $("#IDCHOFER").val(data[k].IDCHOFER);
+                $("#FECHA_VIAJE").val(data[k].FECHA_VIAJE);
             });
         },
         timeout:40000
@@ -158,6 +172,11 @@ function createrow(){
     $('#ORIGEN').val('');
     $('#DESTINO').val('');
     $('#IdBus').val('');
+    $('#HORA').val('');
+    $('#HORAFIN').val('');
+    $('#PRECIO').val('');
+    $('#FECHA_VIAJE').val('');
+    $('#IDCHOFER').val('');
 }
 
 function deleteviaje(){
