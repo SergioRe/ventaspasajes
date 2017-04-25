@@ -12,13 +12,17 @@ class Itinerario_model extends CI_Model{
     }
 
     public function listaviaje(){ 
-        $this->db->select("i.*,b.*,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,c.*");
+        /*$this->db->select("i.*,b.*,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,c.*");
         $this->db->from('itinerario as i');
         $this->db->join('chofer as c','c.IdChofer = i.IDCHOFER');
         $this->db->join('bus as b','b.IdBus = i.IDBUS');
-        $this->db->order_by('i.IDITINERARIO DESC');
-        $query = $this->db->get();
-        $data = $query->result_array(); 
+        $this->db->order_by('CAST(i.FECHA_VIAJE AS DATE)');*/
+        $sql = "select i.*,b.*,CONCAT(i.ORIGEN, ' - ',i.DESTINO) AS NOMVIAJE,c.* from itinerario as i "
+                . "inner join chofer as c on c.IdChofer = i.IDCHOFER "
+                . "inner join bus as b on b.IdBus = i.IDBUS "
+                . "order by CAST(i.FECHA_VIAJE AS DATE)";
+        $query = $this->db->query($sql);
+        $data = $query->result_array();
         return $data;
     }
     

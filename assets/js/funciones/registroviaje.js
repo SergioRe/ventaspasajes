@@ -20,10 +20,12 @@ $(document).ready(function() {
         "columns": 
             [
                 {"data": "NOMVIAJE"},
-                {"data": "ORIGEN"},
-                {"data": "DESTINO"},
-                {"data": "NomBus"},
-                {"data": "Placa"},
+                {"data": "ORIGEN","class": "text-center"},
+                {"data": "DESTINO","class": "text-center"},
+                {"data": "FECHA_VIAJE","class": "text-center"},
+                {"data": "NomBus","class": "text-center"},
+                {"data": "PRECIO","class": "text-center"},
+                {"data": "Placa","class": "text-center"},
                 {"data": "Chofer"},
                 {
              bSortable: false,

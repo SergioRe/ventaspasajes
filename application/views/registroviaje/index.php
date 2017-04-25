@@ -107,7 +107,7 @@
                     <form class="form-horizontal" id="formRegistroViaje" name="formRegistroViaje">
                         <input type="hidden" id="IDITINERARIO" name="IDITINERARIO"/>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">NOMBRE VIAJE: </label>
                                     <div class="col-lg-7">
@@ -150,25 +150,14 @@
                                         <input type="text" class="form-control" id="ASIENTO" name="ASIENTO" value="40" disabled="" />
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="<?php echo base_url('assets/img/bu3.jpg')?>" style="width: 100%;height: 180px;">
+                                <br/>
                                 <div class="form-group">
                                     <label for="ejemplo_email_3" class="col-lg-4 control-label">FECHA VIAJE: </label>
                                     <div class="col-lg-7">
                                         <input type="text" class="form-control" id="FECHA_VIAJE" name="FECHA_VIAJE"  />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">BUS: </label>
-                                    <div class="col-lg-7">
-                                        <select id="IdBus" name="IdBus" class="form-control">
-                                            <option value="">Seleecione</option>
-                                            <?php
-                                            foreach ($listabus as $value):
-                                            ?>
-                                            <option value="<?php echo $value['IdBus'];?>"><?php echo $value['NomBus'];?></option>
-                                            <?php
-                                            endforeach;
-                                            ?>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -186,9 +175,21 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <img class="img-responsive" src="<?php echo base_url('assets/img/bu3.jpg')?>" style="width: 100%;height: 180px;">
+                                <div class="form-group">
+                                    <label for="ejemplo_email_3" class="col-lg-4 control-label">BUS: </label>
+                                    <div class="col-lg-7">
+                                        <select id="IdBus" name="IdBus" class="form-control">
+                                            <option value="">Seleecione</option>
+                                            <?php
+                                            foreach ($listabus as $value):
+                                            ?>
+                                            <option value="<?php echo $value['IdBus'];?>"><?php echo $value['NomBus'];?></option>
+                                            <?php
+                                            endforeach;
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -201,9 +202,15 @@
                     <button type="button" class="btn btn-danger btn-sm" id="btn-delete" onclick="deleteviaje();">
                         <span class="glyphicon glyphicon glyphicon-minus"></span> <b>Boton Eliminar</b>
                     </button><br/><br/>
-                    <div class="well">
-                        <center><b><p>LISTADO VIAJES</p></b></center>
-                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row" style="background:#FFF;">
+            <div class="col-md-12"><br/>
+                <div class="well">
+                    <center><b><p>LLISTADO VIAJES</p></b></center>
                     <form class="form-horizontal izquierda" role="form">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="email">NOMBRE VIAJE: </label>
@@ -222,7 +229,9 @@
                                 <th class="text-center">NOMBRE VIAJE</th>
                                 <th class="text-center">ORIGNE</th>
                                 <th class="text-center">DESTINO</th>
+                                <th class="text-center">FECHA VIAJE</th>
                                 <th class="text-center">BUS</th>
+                                <th class="text-center">PRECIO</th>
                                 <th class="text-center">NRO PLACA</th>
                                 <th class="text-center">CHOFER</th>
                                 <th class="text-center">EDITAR</th>
