@@ -46,6 +46,26 @@ class Itinerario_model extends CI_Model{
         return $data;
     }
     
+    public function validarChofer($idchofer,$IdFecha){
+        $this->db->select("i.IDITINERARIO, i.IDBUS, i.IDCHOFER, i.FECHA_VIAJE");
+        $this->db->from('itinerario as i');
+        $this->db->where('i.FECHA_VIAJE', $IdFecha);
+        $this->db->where('i.IDCHOFER', $idchofer);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return count($data)>0?'Existe':'NoExiste';
+    }
+    
+    public function validarBus($idBus,$IdFecha){
+        $this->db->select("i.IDITINERARIO, i.IDBUS, i.IDCHOFER, i.FECHA_VIAJE");
+        $this->db->from('itinerario as i');
+        $this->db->where('i.FECHA_VIAJE', $IdFecha);
+        $this->db->where('i.IDBUS', $idBus);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return count($data)>0?'Existe':'NoExiste';
+    }
+    
     public function insertViaje($data){
         try {
             date_default_timezone_set('America/Lima');
@@ -56,6 +76,14 @@ class Itinerario_model extends CI_Model{
             $fecha = explode('-', $data['FECHA_VIAJE']);
             $fechaFormatoBD = $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
             $data['FECHA_VIAJE'] = $fechaFormatoBD;
+            $validandoChofer = $this->validarChofer($data['IDCHOFER'], $data['FECHA_VIAJE']);
+            if($validandoChofer == 'Existe'){
+                return 'ExisteChofer';
+            }
+            $validandoBus = $this->validarBus($data['IdBus'], $data['FECHA_VIAJE']);
+            if($validandoBus == 'Existe'){
+                return 'ExisteBus';
+            }
             $this->db->insert($this->table,$data);
             $dias= 9;
             for($i=1;$i<=$dias;$i++){

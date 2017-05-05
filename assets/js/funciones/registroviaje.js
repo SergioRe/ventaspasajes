@@ -126,12 +126,21 @@ function saverow(){
         beforeSend:cargando,
         success: function(result){
             Ext.getBody().unmask();
-            if(result.data ==='Si'){
-                Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
-                createrow();
-                reload_table();
-            }else{
-                ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
+            switch (result.data){
+                case 'Si':
+                    Ext.Msg.alert('!ATENCIÓN¡', 'Proceso realizado correctamente.');
+                    createrow();
+                    reload_table();
+                    break;
+                case 'ExisteChofer':
+                    Ext.Msg.alert('!ATENCIÓN¡', 'El chofer seleccionado ya se encuentra asignado a un viaje.</br>Por favor seleccione otro chofer.');
+                    break;
+                case 'ExisteBus':
+                    Ext.Msg.alert('!ATENCIÓN¡', 'El bus seleccionado ya se encuentra asignado a un viaje.</br>Por favor seleccionar otro bus.');
+                    break;
+                default:
+                    ExtMsg("Aviso: <br /><br />" + result, Ext.MessageBox.WARNING);
+                    break;
             }
         },
         timeout:40000,

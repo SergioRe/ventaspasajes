@@ -56,10 +56,6 @@ class Usuarios_model extends CI_Model{
                     $data['CARGO'] = 'Vendedor';
                     $data['TIPCOD'] = '2';
                     break;
-                case '3':
-                    $data['CARGO'] = 'Supervisor';
-                    $data['TIPCOD'] = '3';
-                    break;
             endswitch;
             $this->db->insert($this->table,$data);
             $sql = "INSERT INTO `menu`(`TIPCOD`, `MENNOM`, `MENURL`, `MENPERMISO`, `IDUSUARIO`, `MENICONO`) 
