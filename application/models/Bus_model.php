@@ -31,10 +31,23 @@ class Bus_model extends CI_Model{
         return $data;
     }
     
+    public function buscarChofer($idChofer){
+        $this->db->select('b.*');
+        $this->db->from('bus as b');
+        $this->db->where('b.IdChofer', $idChofer);
+        $query = $this->db->get();
+        $data = $query->result_array(); 
+        return count($data)>0?'Existe':'NoExiste';
+    }
+    
     public function insertBus($data){
         try {
             unset($data['IdBus']);
             $data['N_Asiento'] = '40';
+            $respuesta = $this->buscarChofer($data['IdChofer']);
+            if($respuesta == 'Existe'){
+                return 'Existe';
+            }
             $this->db->insert($this->table,$data);
             return 'Si';
         } catch (Exception $e) {

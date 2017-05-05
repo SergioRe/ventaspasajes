@@ -126,7 +126,7 @@
                                             <option value="">Seleecione</option>
                                             <option value="1">Administrador del Sistema</option>
                                             <option value="2">Vendedor</option>
-                                            <option value="3">Supervisor</option>
+                                            <option value="3">Cliente</option>
                                         </select>
                                     </div>
                                 </div>
