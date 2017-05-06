@@ -190,4 +190,16 @@ function saverow(){
     });
 }
 
+function createrow(){
+    $("#IDPasajero").val('');
+    $("#Nombres").val('');
+    $("#Direccion").val('');
+    $("#DNI").val('');
+    $("#Telefono").val('');
+    $("#Email").val('');
+    $("#Contrasena").val('');
+    $("#EDAD").val('');
+    $("#SEXO").val('');
+}
+
 
