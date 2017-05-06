@@ -6,7 +6,7 @@ class Auditoria extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('Usuarios_model','usuarios');
-        $this->load->model(array('Itinerario_model'=>'itinerario','Usuarios_model'=>'usuarios','Menu_model'=>'menu','Bus_model'=>'bus','Chofer_model'=>'chofer'));
+        $this->load->model(array('Auditoria_model'=>'auditoria','Menu_model'=>'menu'));
     } 
 
     public function index(){
@@ -29,8 +29,7 @@ class Auditoria extends CI_Controller {
     public function consultar(){
         $this->load->helper('url');
         $data = array();
-//        $data['listamenuporusuario'] = $this->menu->menuPorUsuario1($_POST['IDUSUARIO']);
-//        $data['IDUSUARIO']= $_POST['IDUSUARIO'];
+        $data['sentencia'] = $this->auditoria->consulta($_POST['sentenciasql']);
         $this->load->view('auditoria/consulta',$data);
     }
 }
