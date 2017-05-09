@@ -12,10 +12,28 @@ class Auditoria_model extends CI_Model{
     }
 
     public function consulta($sentenciasql){
-        $sql = $sentenciasql;
-	$query = $this->db->query($sql);
-        $data = $query->result_array(); 
-        echo '<pre>';print_r($data);exit;
-        return $data;
+        define("cServidor", "localhost");
+        define("cUsuario", "root");
+        define("cPass","");
+        define("cBd","ventas_pasaje_transportes");
+        $link = mysqli_connect(cServidor, cUsuario, cPass, cBd);
+        $link->query($sentenciasql);
+        if($sentenciasql[0] == 's' || $sentenciasql[0] == 'S'){
+            $row_cnt = mysqli_field_count($link);
+            $consulta1= mysqli_query($link,$sentenciasql);
+            if($consulta1->num_rows == 0){
+                $sql1 = 'vacio';
+            }else{
+                $sql1 = mysqli_fetch_array($consulta1);
+            }
+            $info_campo = $consulta1->fetch_fields();
+            $miArray1=[];
+            foreach ($info_campo as $valor) {
+                $miArray1[] = array($valor->name);
+            }
+            return array('flag'=>'select','consulta'=>$sql1,'numfila'=>$row_cnt,'nomcampos'=>$miArray1);
+        }else{
+            return array('flag'=>'NoSelect','mensaje'=>"Columnas afectadas: ".$link->affected_rows);
+        }
     }
 }
